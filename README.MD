@@ -1,5 +1,5 @@
 # tutorial temporario
-baixa o yarn ai irmao
-ai tu vai la
-instala o node
-yarn install
+<br>baixa o yarn ai irmao
+<br>ai tu vai la
+<br>instala o node
+<br>yarn install
