@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Created by https://www.toptal.com/developers/gitignore/api/node,git
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,git
 *.orig
@@ -94,3 +95,7 @@ web_modules/
 .webpack/
 
 # End of https://www.toptal.com/developers/gitignore/api/node,git
+=======
+/node_modules
+yarn-error.log
+>>>>>>> 07e89a2b5edf51710d106feb4b582512c410fbf7
