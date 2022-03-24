@@ -82,7 +82,7 @@ web_modules/
 .temp
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
-
+.vscode
 # yarn v2
 .yarn/cache
 .yarn/unplugged
@@ -95,7 +95,5 @@ web_modules/
 .webpack/
 
 # End of https://www.toptal.com/developers/gitignore/api/node,git
-=======
 /node_modules
 yarn-error.log
->>>>>>> 07e89a2b5edf51710d106feb4b582512c410fbf7
