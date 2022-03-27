@@ -4,7 +4,9 @@
   "main": "server.ts",
   "scripts": {
     "dev": "nodemon",
-    "lint": "eslint . --ext .js,.ts --fix"
+    "lint:eslint": "eslint . --ext .js,.ts --fix",
+    "lint:tsc": "tsc --noEmit",
+    "lint": "run-p lint:eslint lint:tsc"
   },
   "repository": "https://github.com/FlavioBernaski/GoStudy-UTFPR-server",
   "author": "Eh os TI",
