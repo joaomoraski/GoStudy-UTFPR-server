@@ -1,24 +1,20 @@
 {
-  "name": "GoStudyUTFPRServer",
+  "name": "go-study-utfpr-server",
   "version": "1.0.0",
   "main": "server.ts",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint"
-    }
-  },
   "scripts": {
     "dev": "nodemon",
-    "lint": "eslint . --ext .js,.ts"
+    "lint": "eslint . --ext .js,.ts --fix"
   },
   "repository": "https://github.com/FlavioBernaski/GoStudy-UTFPR-server",
-  "author": "Flavio Bernaski <fbernaski@gmail.com>",
+  "author": "Eh os TI",
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.3"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
+    "@types/json-schema": "^7.0.11",
     "@types/node": "^17.0.22",
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
