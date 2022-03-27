@@ -1,15 +1,9 @@
-import express from "express";
+import express from 'express'
+import { router } from './routes'
 
 const app = express();
-const port = 3000;
 
-app.get('/',(req,res)=>{
-    res.send('aaaaaaaaa');
-});
+app.use(express.json());
+app.use(router);
 
-app.listen(port, err => {
-    if(err){
-        return console.log(err);
-    }
-    console.log(`Rodando em ${port}`)
-});
+export { app }
