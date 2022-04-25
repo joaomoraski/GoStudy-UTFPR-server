@@ -15,4 +15,5 @@ await (async function dbConnection():Promise<void>{
         console.log(err)
     });
 })()
+
 console.log(`Rodando em ${port}`)
