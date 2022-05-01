@@ -1,27 +1,23 @@
 import { app } from './app'
-import { connectDB } from './connectDB'
-
-//gambiara pra merda do eslint
-require('dotenv').config({  
-    path: ".env"
-})
+import { connection } from './connectDB'
 
 
 const port = 3000;
 
 app.listen(port);
 
-(async function dbConnection():Promise<void>{
-    await connectDB({
-        dbHost: process.env.DB_HOST,
-        dbName: process.env.DB_NAME, 
-        dbUser: process.env.DB_USER, 
-        dbPassword: process.env.DB_PASSWORD, 
-        dbPort: process.env.DB_PORT,
-    }).catch(err => {
-        console.log(err)
-    });
-})()
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
+(async function connectionDb(){
+    try {
+        const resultado = await connection.query("show tables");
+        console.log(resultado);
+    } catch (error) {
+        console.log(error);
+    }
+    await connection.authenticate()
+        .then(()=>console.log('Connection has been established successfully.'))
+        .catch ((error)=>console.error('Unable to connect to the database:', error))
+})();
 
 
 console.log(`Rodando em ${port}`)
