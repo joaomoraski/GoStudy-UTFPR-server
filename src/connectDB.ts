@@ -1,18 +1,15 @@
 import { Sequelize } from "sequelize";
+import * as dotenv from "dotenv";
 
-import Database from './Entities/database'
+dotenv.config({
+    path: ".env"
+})
 
-const connectDB = async ({host, name, username, password}: Database)=> {
-    // Connection with DB
-    const sequelize = new Sequelize(name, username, password, {
-        host: host,
-        dialect: 'mysql',
-    });
-    await sequelize.authenticate()
-        .then(()=>console.log('Connection has been established successfully.'))
-        .catch ((error)=>console.error('Unable to connect to the database:', error))
+const connection = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+    host: process.env.DB_HOST,
+    dialect: 'mysql',
+    dialectOptions: {
+        port: process.env.DB_PORT,
+    }});
  
-}
- 
-export {connectDB}
-
+export { connection };

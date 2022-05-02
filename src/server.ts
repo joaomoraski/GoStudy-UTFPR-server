@@ -1,19 +1,23 @@
 import { app } from './app'
-import { connectDB } from './connectDB';
+import { connection } from './connectDB'
+
+
 const port = 3000;
 
 app.listen(port);
 
-// Connect with Database
-await (async function dbConnection():Promise<void>{
-    await connectDB({
-        host:"localhost",
-        name:"GoStudy",
-        username:"root",
-        password:"root"
-    }).catch(err => {
-        console.log(err)
-    });
-})()
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
+(async function connectionDb(){
+    try {
+        const resultado = await connection.query("show tables");
+        console.log(resultado);
+    } catch (error) {
+        console.log(error);
+    }
+    await connection.authenticate()
+        .then(()=>console.log('Connection has been established successfully.'))
+        .catch ((error)=>console.error('Unable to connect to the database:', error))
+})();
+
 
 console.log(`Rodando em ${port}`)
