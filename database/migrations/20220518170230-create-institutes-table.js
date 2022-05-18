@@ -18,16 +18,16 @@ module.exports = {
             telephone: {
                 type: Sequelize.STRING
             },
-            opening_time: {
+            openingTime: {
                 type: Sequelize.STRING
             },
-            closing_time: {
+            closingTime: {
                 type: Sequelize.STRING
             },
         });
     },
 
-    async down (queryInterface, Sequelize) {
+    async down (queryInterface, ) {
         await queryInterface.dropTable('institutes');
     }
 };
