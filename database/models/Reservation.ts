@@ -1,33 +1,33 @@
 import { connection } from '../../src/connectDB';
 import { DataTypes } from 'sequelize';
 
-const Institute = connection.define('institute', {
+// npx sequelize-cli-typescript model:generate --name Reservation --attributes fk_id_room:integer,fk_id_user:integer,fk_id_schedule:integer,date:string
+
+
+const Reservation = connection.define('reservation', {
+
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
-    name: {
+    fk_id_room: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    fk_id_user: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    city: {
-        type: DataTypes.STRING,
+    fk_id_schedule: {
+        type: DataTypes.INTEGER,
         allowNull: false
     },
-    telephone: {
+    date: {
         type: DataTypes.STRING,
         allowNull: false
-    },
-    opening_time: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    closing_time: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
+    }
 })
 
-export { Institute };
+export { Reservation };
