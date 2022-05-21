@@ -1,4 +1,4 @@
-import { connection } from '../../src/connectDB';
+import { connection } from '../../connectDB';
 import { DataTypes } from 'sequelize';
 
 // npx sequelize-cli model:generate --name Institute --attributes id:integer,name:string,city:string,telephone:string,opening_time:string,closing_time:string
