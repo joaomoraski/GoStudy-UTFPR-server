@@ -3,10 +3,7 @@
   "version": "1.0.0",
   "main": "server.ts",
   "scripts": {
-    "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts",
-    "lint:eslint": "eslint . --ext .js,.ts --fix",
-    "lint:tsc": "tsc --noEmit --esModuleInterop",
-    "lint": "run-p lint:eslint lint:tsc"
+    "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts"
   },
   "husky": {
     "hooks": {
@@ -15,7 +12,7 @@
   },
   "lint-staged": {
     "*.{js,ts}": [
-      "tsc --noEmit --esModuleInterop",
+      "tsc --noEmit --esModuleInterop --checkJs",
       "eslint . --ext .js,.ts --fix"
     ]
   },

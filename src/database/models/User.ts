@@ -1,8 +1,7 @@
-import { connection } from '../../src/connectDB';
+import { connection } from '../../connectDB';
 import { DataTypes } from 'sequelize';
 
 const User = connection.define('user', {
-
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,

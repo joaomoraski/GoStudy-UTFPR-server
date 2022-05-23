@@ -14,8 +14,7 @@
     "baseUrl":"."
   },
   "include": [
-    "src/**/*.ts",
-    "database/Models/*.ts"
+    "src/**/*",
   ],
   "exclude": [
     "node_modules"
