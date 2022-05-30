@@ -26,6 +26,9 @@ const Reservation = connection.define('reservation', {
         type: DataTypes.STRING,
         allowNull: false
     }
+},{
+    tableName: "reservation",
+    timestamps: false
 })
 
 export { Reservation };

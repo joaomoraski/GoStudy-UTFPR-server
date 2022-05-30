@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Request, Response } from 'express';
 import { CreateInstituteUseCase } from './CreateInstituteUseCase';
 import { IInstituteDTO } from '../InstituteDTO'
@@ -10,22 +11,17 @@ class CreateInstituteController{
 
     async handle(request: Request, response: Response): Promise<Response> {
         
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const {
             name,
             city,
             telephone,
-            opening_time,
-            closing_time
-        }:IInstituteDTO = request.body;
+            openingTime,
+            closingTime
+        } = request.body;
 
-        const institute: Institute = await this.createInstituteUseCase.execute({
-            name,
-            city,
-            telephone,
-            opening_time,
-            closing_time
-        });
+        const instituteDTO:IInstituteDTO = {name,city,telephone,openingTime,closingTime}
+
+        const institute: Institute = await this.createInstituteUseCase.execute(instituteDTO);
 
         return response.status(201).json(institute);
     }

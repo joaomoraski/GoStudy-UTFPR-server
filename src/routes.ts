@@ -1,80 +1,26 @@
-/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { Router } from 'express'
-import { connection } from './connectDB'
-
-
+import { createInstituteController } from './modules/Institute/useCases/createInstitute/';
+import { showInstituteController } from './modules/Institute/useCases/showInstitute/';
+import { updateInstituteController } from './modules/Institute/useCases/updateInstitute/';
+import { deleteInstituteController } from './modules/Institute/useCases/deleteInstitute/';
 const router = Router();
 
-
-router.get('/institutes', (req, res) => {
-    (async function connectionDb(){
-        try {
-            const resultado = await connection.query("select * from institutes");
-            return res.status(201).send(resultado[0]);
-        } catch (error) {
-            return res.status(500).send("Deu ruim no back irmão");
-
-        }
-    })();
+router.post('/institute', (req, res) => {
+    return createInstituteController.handle(req, res);
 })
 
-router.get('/users', (req, res) => {
-    (async function connectionDb(){
-        try {
-            const resultado = await connection.query("select * from users");
-            return res.status(201).send(resultado[0]);
-        } catch (error) {
-            return res.status(500).send("Deu ruim no back irmão");
-
-        }
-    })();
+router.get('/institute', (req, res) => {
+    return showInstituteController.handle(req, res); 
 })
 
-router.get('/rooms', (req, res) => {
-    (async function connectionDb(){
-        try {
-            const resultado = await connection.query("select * from rooms");
-            return res.status(201).send(resultado[0]);
-        } catch (error) {
-            return res.status(500).send("Deu ruim no back irmão");
-
-        }
-    })();
+router.put('/institute', (req, res) => {
+    return updateInstituteController.handle(req, res); 
 })
 
-router.get('/schedules', (req, res) => {
-    (async function connectionDb(){
-        try {
-            const resultado = await connection.query("select * from schedules");
-            return res.status(201).send(resultado[0]);
-        } catch (error) {
-            return res.status(500).send("Deu ruim no back irmão");
-
-        }
-    })();
-})
-
-router.get('/rooms_has_schedules', (req, res) => {
-    (async function connectionDb(){
-        try {
-            const resultado = await connection.query("select * from rooms_has_schedules");
-            return res.status(201).send(resultado[0]);
-        } catch (error) {
-            return res.status(500).send("Deu ruim no back irmão");
-
-        }
-    })();
-})
-
-router.get('/reservations', (req, res) => {
-    (async function connectionDb(){
-        try {
-            const resultado = await connection.query("select * from reservations");
-            return res.status(201).send(resultado[0]);
-        } catch (error) {
-            return res.status(500).send("Deu ruim no back irmão");
-        }
-    })();
+router.delete('/institute', (req, res) => {
+    return deleteInstituteController.handle(req, res);
 })
 
 export { router }

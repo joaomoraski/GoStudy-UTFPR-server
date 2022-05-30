@@ -4,7 +4,7 @@
 
 module.exports = {
     async up (queryInterface) {
-        return queryInterface.bulkInsert('schedules', [
+        return queryInterface.bulkInsert('schedule', [
             {
                 label: "T1",
                 initialTime: "13:00",
@@ -40,6 +40,6 @@ module.exports = {
     },
 
     async down (queryInterface) {
-        return queryInterface.bulkDelete('schedules', null, {});
+        return queryInterface.bulkDelete('schedule', null, {});
     }
 };

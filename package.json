@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "server.ts",
   "scripts": {
-    "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts"
+    "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts",
+    "setup": "cd ./src/database/ && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && cd ../../"
   },
   "husky": {
     "hooks": {
@@ -16,7 +17,7 @@
       "eslint . --ext .js,.ts --fix"
     ]
   },
-  "repository": "https://github.com/FlavioBernaski/GoStudy-UTFPR-server",
+  "repository": "https://github.com/joaomoraski/GoStudy-UTFPR-server",
   "author": "Eh os TI",
   "license": "MIT",
   "dependencies": {

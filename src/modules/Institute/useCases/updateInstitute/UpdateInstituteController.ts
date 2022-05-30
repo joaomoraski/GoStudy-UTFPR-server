@@ -9,14 +9,14 @@ class UpdateInstituteController{
     ) {}
 
     async handle(request: Request, response: Response): Promise<Response> {
-        const { id, name, city, telephone, opening_time, closing_time } = request.body;
+        const { id, name, city, telephone, openingTime, closingTime } = request.body;
         const institute:Institute = await this.updateInstituteUseCase.execute({
             id,
             name,
             city,
             telephone,
-            opening_time,
-            closing_time
+            openingTime,
+            closingTime
         });
 
         return response.status(201).json(institute);
