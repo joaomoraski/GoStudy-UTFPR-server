@@ -4,7 +4,7 @@
 
 module.exports = {
     async up (queryInterface) {
-        return queryInterface.bulkInsert('reservations', [
+        return queryInterface.bulkInsert('reservation', [
             {
                 fk_id_room: 1,
                 fk_id_user: 1,
@@ -23,6 +23,6 @@ module.exports = {
     },
 
     async down (queryInterface) {
-        return queryInterface.bulkDelete('reservations', null, {});
+        return queryInterface.bulkDelete('reservation', null, {});
     }
 };

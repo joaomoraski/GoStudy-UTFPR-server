@@ -5,8 +5,8 @@ CREATE TABLE IF NOT EXISTS Institute (
     name VARCHAR(60) NOT NULL,
     city VARCHAR(60) NOT NULL,
     telephone VARCHAR(11) NOT NULL,
-    opening_time TIME NOT NULL,
-    closing_time TIME NOT NULL
+    opening_time VARCHAR(20) NOT NULL,
+    closing_time VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS User (
@@ -31,8 +31,8 @@ CREATE TABLE IF NOT EXISTS Room (
 CREATE TABLE IF NOT EXISTS Schedule (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     label VARCHAR(3),
-    initial_time TIME NOT NULL,
-    final_time TIME NOT NULL
+    initial_time VARCHAR(20) NOT NULL,
+    final_time VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Room_has_schedule(

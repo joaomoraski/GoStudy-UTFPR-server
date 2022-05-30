@@ -6,8 +6,8 @@ interface IUpdateInstitute {
     name?: string;
     city?: string;
     telephone?: string;
-    opening_time?: string;
-    closing_time?: string;
+    openingTime?: string;
+    closingTime?: string;
 }
 
 class UpdateInstituteUseCase {
@@ -20,8 +20,8 @@ class UpdateInstituteUseCase {
         name,
         city,
         telephone,
-        opening_time,
-        closing_time
+        openingTime,
+        closingTime
     }: IUpdateInstitute): Promise<Institute>{
         const institute:Institute = await this.instituteRepository.findById(id);
 
@@ -32,8 +32,8 @@ class UpdateInstituteUseCase {
         institute.name = name ? name : institute.name;
         institute.city = city ? city : institute.city;
         institute.telephone = telephone ? telephone : institute.telephone;
-        institute.opening_time = opening_time ? opening_time : institute.opening_time;
-        institute.closing_time = closing_time ? closing_time : institute.closing_time;
+        institute.openingTime = openingTime ? openingTime : institute.openingTime;
+        institute.closingTime = closingTime ? closingTime : institute.closingTime;
 
         await this.instituteRepository.update(institute);
 

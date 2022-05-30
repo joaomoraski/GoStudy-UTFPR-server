@@ -16,6 +16,9 @@ const RoomHasSchedule = connection.define('roomHasSchedule', {
         type: DataTypes.STRING,
         allowNull: false
     },
+},{
+    tableName: "room_has_schedule",
+    timestamps: false
 })
 
 export { RoomHasSchedule };

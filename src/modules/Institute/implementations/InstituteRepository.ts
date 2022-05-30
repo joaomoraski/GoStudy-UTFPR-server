@@ -1,41 +1,44 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { Institute } from "../../../entities/Institute";
 import { IInstituteRepository } from "../IInstituteRepository";
-
-// Apagar aqui
-const name = 'UTFPR';
-const city = 'Campo Mourão';
-const telephone = '999999999';
-const opening_time = '08:24';
-const closing_time = '12:45';
+import { InstituteDB } from "../../../database/models/Institute";
 
 class InstituteRepository implements IInstituteRepository {
 
     async create(institute: Institute):Promise<Institute>{
-        await new Promise(resolve => setTimeout(resolve, 2000)); // GAMBIARRA
-        return institute;
+        try{
+            await InstituteDB.create({name: institute.name, city: institute.city, telephone: institute.telephone, openingTime: institute.openingTime, closingTime: institute.closingTime});
+            return institute;
+        } catch(err){
+            throw new Error(err);
+        }
     }
 
     async listAllInstitutes(): Promise<Institute[]>{
-        await new Promise(resolve => setTimeout(resolve, 2000)); // GAMBIARRA
-        const institute:Institute = Institute.create(name,city,telephone,opening_time,closing_time);
-        const institutes: Institute[] = [institute];
+        const institutes: any[] = await InstituteDB.findAll();
+        console.log(institutes);
         return institutes;
     }
 
     async findById(id: string): Promise<Institute>{
-        await new Promise(resolve => setTimeout(resolve, 2000)); // GAMBIARRA
-        const institute:Institute = Institute.create(id,name,city,telephone,opening_time,closing_time);
-        return institute;
+        const institutes: any[] = await InstituteDB.findAll({where: { id:id }});
+        return institutes[0];
     }
 
     async update(institute: Institute): Promise<Institute>{
-        await new Promise(resolve => setTimeout(resolve, 2000)); // GAMBIARRA
+        await InstituteDB.update({name: institute.name, city: institute.city, telephone: institute.telephone, openingTime: institute.openingTime, closingTime: institute.closingTime},{where: {id: institute.id}});
         return institute;
     }
 
     async delete(institute: Institute): Promise<Institute>{
-        await new Promise(resolve => setTimeout(resolve, 2000)); // GAMBIARRA
-        return institute;
+        try{
+            await InstituteDB.destroy({where: {id: institute.id}});
+            return institute;
+        } catch(err){
+            throw new Error(err);
+        }
     }
 }
 

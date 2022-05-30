@@ -1,10 +1,10 @@
 import { connection } from '../../connectDB';
 import { DataTypes } from 'sequelize';
 
-// npx sequelize-cli model:generate --name Institute --attributes id:integer,name:string,city:string,telephone:string,opening_time:string,closing_time:string
+// npx sequelize-cli model:generate --name Institute --attributes id:integer,name:string,city:string,telephone:string,openingTime:string,closingTime:string
 // npx sequelize-cli seed:generate --name demo-user
 // npx sequelize-cli migration:create --name create-room-has-schedules-table-migration
-const Institute = connection.define('institute', {
+const InstituteDB = connection.define('Institute', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -23,14 +23,17 @@ const Institute = connection.define('institute', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    opening_time: {
+    openingTime: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    closing_time: {
+    closingTime: {
         type: DataTypes.STRING,
         allowNull: false
     },
+},{
+    tableName: "institute",
+    timestamps: false
 })
 
-export { Institute };
+export { InstituteDB };

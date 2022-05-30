@@ -20,6 +20,9 @@ const Schedule = connection.define('schedule', {
         type: DataTypes.STRING,
         allowNull: false
     },
+},{
+    tableName: "schedule",
+    timestamps: false
 })
 
 export { Schedule };

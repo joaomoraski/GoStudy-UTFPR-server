@@ -36,6 +36,9 @@ const User = connection.define('user', {
         type: DataTypes.BOOLEAN,
         allowNull: false
     },
+},{
+    tableName: "user",
+    timestamps: false
 })
 
 export { User };

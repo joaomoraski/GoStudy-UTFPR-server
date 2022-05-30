@@ -16,6 +16,9 @@ const Room = connection.define('room', {
         type: DataTypes.STRING,
         allowNull: false
     },
+},{
+    tableName: "room",
+    timestamps: false
 })
 
 export { Room };
