@@ -2,7 +2,7 @@ import { app } from './app'
 import { connection } from './connectDB'
 
 
-const port = 3000;
+const port = process.env.BACKEND_APP_PORT;
 
 app.listen(port);
 

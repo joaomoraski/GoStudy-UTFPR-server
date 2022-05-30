@@ -3,27 +3,27 @@ class Institute{
     name: string;
     city: string;
     telephone: string;
-    opening_time: string;
-    closing_time: string;
+    openingTime: string;
+    closingTime: string;
 
-    constructor({name, city, telephone, opening_time, closing_time}: Institute){
+    constructor({name, city, telephone, openingTime, closingTime}: Institute){
         return Object.assign(this, {
             name,
             city,
             telephone,
-            opening_time,
-            closing_time
+            openingTime,
+            closingTime
         });
     }
 
-    static create(name:string, city:string, telephone:string, opening_time:string, closing_time:string, id?:string) {
+    static create(name:string, city:string, telephone:string, openingTime:string, closingTime:string, id?:string) {
         const institute = new Institute({
             id,
             name,
             city,
             telephone,
-            opening_time,
-            closing_time
+            openingTime,
+            closingTime
         });
         return institute;
     }

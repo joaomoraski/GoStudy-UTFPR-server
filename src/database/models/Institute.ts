@@ -1,23 +1,21 @@
-import { connection } from '../../src/connectDB';
+import { connection } from '../../connectDB';
 import { DataTypes } from 'sequelize';
 
-const User = connection.define('user', {
-
+// npx sequelize-cli model:generate --name Institute --attributes id:integer,name:string,city:string,telephone:string,openingTime:string,closingTime:string
+// npx sequelize-cli seed:generate --name demo-user
+// npx sequelize-cli migration:create --name create-room-has-schedules-table-migration
+const InstituteDB = connection.define('Institute', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
-    fk_id_institute: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
     name: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    ra: {
+    city: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -25,19 +23,17 @@ const User = connection.define('user', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    email: {
+    openingTime: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    password: {
+    closingTime: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    isAdmin: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false
-    },
+},{
+    tableName: "institute",
+    timestamps: false
 })
 
-export { User };
-
+export { InstituteDB };

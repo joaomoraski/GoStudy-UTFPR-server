@@ -1,26 +1,24 @@
-import { connection } from '../../src/connectDB';
+import { connection } from '../../connectDB';
 import { DataTypes } from 'sequelize';
 
-const Schedule = connection.define('schedule', {
-
+const Room = connection.define('room', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
-    label: {
+    fk_id_institute: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    initial_time: {
+    number: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    final_time: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
+},{
+    tableName: "room",
+    timestamps: false
 })
 
-export { Schedule };
+export { Room };

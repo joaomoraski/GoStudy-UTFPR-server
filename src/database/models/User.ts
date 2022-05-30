@@ -1,18 +1,22 @@
-import { connection } from '../../src/connectDB';
+import { connection } from '../../connectDB';
 import { DataTypes } from 'sequelize';
 
-const Institute = connection.define('institute', {
+const User = connection.define('user', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
+    fk_id_institute: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
     name: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    city: {
+    ra: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -20,14 +24,22 @@ const Institute = connection.define('institute', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    opening_time: {
+    email: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    closing_time: {
+    password: {
         type: DataTypes.STRING,
         allowNull: false
     },
+    isAdmin: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
+    },
+},{
+    tableName: "user",
+    timestamps: false
 })
 
-export { Institute };
+export { User };
+

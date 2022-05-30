@@ -1,8 +1,9 @@
-import { connection } from '../../src/connectDB';
+import { connection } from '../../connectDB';
 import { DataTypes } from 'sequelize';
 
-const Reservation = connection.define('reservation', {
+// npx sequelize-cli-typescript model:generate --name Reservation --attributes fk_id_room:integer,fk_id_user:integer,fk_id_schedule:integer,date:string
 
+const Reservation = connection.define('reservation', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -25,6 +26,9 @@ const Reservation = connection.define('reservation', {
         type: DataTypes.STRING,
         allowNull: false
     }
+},{
+    tableName: "reservation",
+    timestamps: false
 })
 
 export { Reservation };

@@ -4,9 +4,7 @@
   "main": "server.ts",
   "scripts": {
     "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts",
-    "lint:eslint": "eslint . --ext .js,.ts --fix",
-    "lint:tsc": "tsc --noEmit --esModuleInterop",
-    "lint": "run-p lint:eslint lint:tsc"
+    "setup": "cd ./src/database/ && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && cd ../../"
   },
   "husky": {
     "hooks": {
@@ -15,11 +13,11 @@
   },
   "lint-staged": {
     "*.{js,ts}": [
-      "tsc --noEmit --esModuleInterop",
+      "tsc --noEmit --esModuleInterop --checkJs",
       "eslint . --ext .js,.ts --fix"
     ]
   },
-  "repository": "https://github.com/FlavioBernaski/GoStudy-UTFPR-server",
+  "repository": "https://github.com/joaomoraski/GoStudy-UTFPR-server",
   "author": "Eh os TI",
   "license": "MIT",
   "dependencies": {

@@ -1,8 +1,7 @@
-import { connection } from '../../src/connectDB';
+import { connection } from '../../connectDB';
 import { DataTypes } from 'sequelize';
 
 const RoomHasSchedule = connection.define('roomHasSchedule', {
-
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -17,6 +16,9 @@ const RoomHasSchedule = connection.define('roomHasSchedule', {
         type: DataTypes.STRING,
         allowNull: false
     },
+},{
+    tableName: "room_has_schedule",
+    timestamps: false
 })
 
 export { RoomHasSchedule };
