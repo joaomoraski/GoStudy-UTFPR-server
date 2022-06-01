@@ -1,43 +1,44 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+import { UserDB } from "../../../database/models/User";
 import { User } from "../../../entities/User";
 import { IUserRepository } from "../IUserRepository";
 
-// Apagar aqui
-const fk_id_institute = '1';
-const name = 'User';
-const ra = '1234567';
-const telephone = '(44) 99988-7766';
-const email = 'email@email.com';
-const password = 'pass';
-const isAdmin = true;
 
 class UserRepository implements IUserRepository {
 
     async create(user : User): Promise<User> {
-        await new Promise(resolve => setTimeout(resolve, 2000)); // GAMBIARRA
-        return user;
+        try {
+            await UserDB.create({fk_id_institute: user.fk_id_institute, name: user.name, ra: user.ra, telephone: user.telephone, email: user.email, password: user.password, isAdmin: user.isAdmin});
+            return user;
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 
     async listAllUsers(): Promise<User[]> {
-        await new Promise(resolve => setTimeout(resolve, 2000)); // GAMBIARRA
-        const user : User = User.create(fk_id_institute, name, ra, telephone, email, password, isAdmin);
-        const users: User[] = [user];
+        const users: any[] = await UserDB.findAll();
         return users;
     }
 
     async findById(id: string): Promise<User> {
-        await new Promise(resolve => setTimeout(resolve, 2000)); // GAMBIARRA
-        const user : User = User.create(fk_id_institute, name, ra, telephone, email, password, isAdmin, id);
+        const user : any = await UserDB.findByPk(id);
         return user;
     }
 
     async update(user : User): Promise<User> {
-        await new Promise(resolve => setTimeout(resolve, 2000)); // GAMBIARRA
+        await UserDB.update({fk_id_institute: user.fk_id_institute, name: user.name, ra: user.ra, telephone: user.telephone, email: user.email, password: user.password, isAdmin: user.isAdmin}, {where: {id: user.id}});
         return user;
     }
 
     async delete(user : User): Promise<User> {
-        await new Promise(resolve => setTimeout(resolve, 2000)); // GAMBIARRA
-        return user;
+        try {
+            await UserDB.destroy({where: {id: user.id}});
+            return user;
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 }
 
