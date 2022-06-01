@@ -1,40 +1,44 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+import { ReservationDB } from "../../../database/models/Reservation";
 import { Reservation } from "../../../entities/Reservation";
 import { IReservationRepository } from "../IReservationRepository";
 
-// Apagar aqui
-const fk_id_room = '1';
-const fk_id_user = '1';
-const fk_id_schedule = '1';
-const date: Date = new Date();
 
 class ReservationRepository implements IReservationRepository {
 
     async create(reservation: Reservation): Promise<Reservation> {
-        await new Promise(resolve => setTimeout(resolve, 2000)); // GAMBIARRA
-        return reservation;
+        try {
+            await ReservationDB.create({fk_id_room: reservation.fk_id_room, fk_id_user: reservation.fk_id_user, fk_id_schedule: reservation.fk_id_schedule, date: reservation.date});
+            return reservation;
+        } catch(err) {
+            throw new Error(err);
+        }
     }
 
     async listAllReservations(): Promise<Reservation[]> {
-        await new Promise(resolve => setTimeout(resolve, 2000)); // GAMBIARRA
-        const reservation: Reservation = Reservation.create(fk_id_room,fk_id_schedule,fk_id_user,date);
-        const reservations: Reservation[] = [reservation];
+        const reservations: any[] = await ReservationDB.findAll();
         return reservations;
     }
 
     async findById(id: string): Promise<Reservation> {
-        await new Promise(resolve => setTimeout(resolve, 2000)); // GAMBIARRA
-        const reservation: Reservation = Reservation.create(fk_id_room, fk_id_schedule, fk_id_user, date, id);
+        const reservation: any = await ReservationDB.findByPk(id);
         return reservation;
     }
 
     async update(reservation: Reservation): Promise<Reservation> {
-        await new Promise(resolve => setTimeout(resolve, 2000)); // GAMBIARRA
+        await ReservationDB.update({fk_id_room: reservation.fk_id_room, fk_id_user: reservation.fk_id_user, fk_id_schedule: reservation.fk_id_schedule, date: reservation.date}, {where: {id: reservation.id}});
         return reservation;
     }
 
     async delete(reservation: Reservation): Promise<Reservation> {
-        await new Promise(resolve => setTimeout(resolve, 2000)); // GAMBIARRA
-        return reservation;
+        try {
+            await ReservationDB.destroy({where: {id: reservation.id}});
+            return reservation;
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 }
 

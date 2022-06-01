@@ -1,7 +1,7 @@
 import { connection } from '../../connectDB';
 import { DataTypes } from 'sequelize';
 
-const Room = connection.define('room', {
+const RoomDB = connection.define('room', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -21,4 +21,4 @@ const Room = connection.define('room', {
     timestamps: false
 })
 
-export { Room };
+export { RoomDB };

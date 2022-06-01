@@ -1,38 +1,44 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+import { RoomDB } from "../../../database/models/Room";
 import { Room } from "../../../entities/Room";
 import { IRoomRepository } from "../IRoomRepository";
 
-// Apagar aqui
-const fk_id_institute = '1';
-const number = 1;
 
 class RoomRepository implements IRoomRepository {
 
     async create(room: Room): Promise<Room> {
-        await new Promise(resolve => setTimeout(resolve, 2000)); // GAMBIARRA
-        return room;
+        try {
+            await RoomDB.create({fk_id_institute: room.fk_id_institute, number: room.number});
+            return room;
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 
     async listAllRooms(): Promise<Room[]> {
-        await new Promise(resolve => setTimeout(resolve, 2000)); // GAMBIARRA
-        const room: Room = Room.create(fk_id_institute,number);
-        const rooms: Room[] = [room];
+        const rooms: any[] = await RoomDB.findAll();
         return rooms;
     }
 
     async findById(id: string): Promise<Room> {
-        await new Promise(resolve => setTimeout(resolve, 2000)); // GAMBIARRA
-        const room: Room = Room.create(fk_id_institute,number,id);
+        const room: any = await RoomDB.findByPk(id);
         return room;
     }
 
     async update(room: Room): Promise<Room> {
-        await new Promise(resolve => setTimeout(resolve, 2000)); // GAMBIARRA
+        await RoomDB.update({fk_id_institute: room.fk_id_institute, number: room.number}, {where: {id: room.id}});
         return room;
     }
 
     async delete(room: Room): Promise<Room> {
-        await new Promise(resolve => setTimeout(resolve, 2000)); // GAMBIARRA
-        return room;
+        try {
+            await RoomDB.destroy({where: {id: room.id}});
+            return room;
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 }
 
