@@ -18,13 +18,12 @@ class InstituteRepository implements IInstituteRepository {
 
     async listAllInstitutes(): Promise<Institute[]>{
         const institutes: any[] = await InstituteDB.findAll();
-        console.log(institutes);
         return institutes;
     }
 
     async findById(id: string): Promise<Institute>{
-        const institutes: any[] = await InstituteDB.findAll({where: { id:id }});
-        return institutes[0];
+        const institutes: any = await InstituteDB.findByPk(id);
+        return institutes;
     }
 
     async update(institute: Institute): Promise<Institute>{

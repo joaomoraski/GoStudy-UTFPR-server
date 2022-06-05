@@ -1,39 +1,43 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+import { ScheduleDB } from "../../../database/models/Schedule";
 import { Schedule } from "../../../entities/Schedule";
 import { IScheduleRepository } from "../IScheduleRepository";
-
-// Apagar aqui
-const label = '1';
-const initial_time = '1';
-const final_time = '1';
 
 class ScheduleRepository implements IScheduleRepository {
 
     async create(schedule: Schedule): Promise<Schedule> {
-        await new Promise(resolve => setTimeout(resolve, 2000)); // GAMBIARRA
-        return schedule;
+        try {
+            await ScheduleDB.create({label: schedule.label, initial_time: schedule.initial_time, final_time: schedule.final_time});
+            return schedule;
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 
     async listAllSchedules(): Promise<Schedule[]> {
-        await new Promise(resolve => setTimeout(resolve, 2000)); // GAMBIARRA
-        const schedule: Schedule = Schedule.create(label, initial_time, final_time);
-        const schedules: Schedule[] = [schedule];
+        const schedules: any[] = await ScheduleDB.findAll();
         return schedules;
     }
 
     async findById(id: string): Promise<Schedule> {
-        await new Promise(resolve => setTimeout(resolve, 2000)); // GAMBIARRA
-        const schedule: Schedule = Schedule.create(label, initial_time, final_time, id);
+        const schedule: any = await ScheduleDB.findByPk(id);
         return schedule;
     }
 
     async update(schedule: Schedule): Promise<Schedule> {
-        await new Promise(resolve => setTimeout(resolve, 2000)); // GAMBIARRA
+        await ScheduleDB.update({label: schedule.label, initial_time: schedule.initial_time, final_time: schedule.final_time}, {where: {id: schedule.id}});
         return schedule;
     }
 
     async delete(schedule: Schedule): Promise<Schedule> {
-        await new Promise(resolve => setTimeout(resolve, 2000)); // GAMBIARRA
-        return schedule;
+        try {
+            await ScheduleDB.destroy({where: {id: schedule.id}});
+            return schedule;
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 }
 

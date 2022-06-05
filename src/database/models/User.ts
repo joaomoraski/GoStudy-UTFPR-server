@@ -1,7 +1,7 @@
 import { connection } from '../../connectDB';
 import { DataTypes } from 'sequelize';
 
-const User = connection.define('user', {
+const UserDB = connection.define('user', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -41,5 +41,5 @@ const User = connection.define('user', {
     timestamps: false
 })
 
-export { User };
+export { UserDB };
 
