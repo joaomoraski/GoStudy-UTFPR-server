@@ -6,7 +6,7 @@ interface IUpdateReservation {
     fk_id_room?: string;
     fk_id_user?: string;
     fk_id_schedule?: string;
-    date?: Date;
+    reservationDate?: string;
 }
 
 class UpdateReservationUseCase {
@@ -19,7 +19,7 @@ class UpdateReservationUseCase {
         fk_id_room,
         fk_id_user,
         fk_id_schedule,
-        date
+        reservationDate
     }: IUpdateReservation): Promise<Reservation>{
         const reservation:Reservation = await this.reservationRepository.findById(id);
 
@@ -27,11 +27,10 @@ class UpdateReservationUseCase {
             throw new Error('Reserva não existe');
         }
 
-        reservation.fk_id_room ? fk_id_room : reservation.fk_id_room;
-        reservation.fk_id_user ? fk_id_user : reservation.fk_id_user;
-        reservation.fk_id_schedule ? fk_id_schedule : reservation.fk_id_schedule;
-        reservation.date ? date : reservation.date;
-
+        reservation.fk_id_room = fk_id_room ? fk_id_room : reservation.fk_id_room;
+        reservation.fk_id_user = fk_id_user ? fk_id_user : reservation.fk_id_user;
+        reservation.fk_id_schedule = fk_id_schedule ? fk_id_schedule : reservation.fk_id_schedule;
+        reservation.reservationDate = reservationDate ? reservationDate : reservation.reservationDate;
         await this.reservationRepository.update(reservation);
 
         return reservation;
