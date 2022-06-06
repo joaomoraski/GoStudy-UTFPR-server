@@ -3,24 +3,24 @@ class Reservation{
     fk_id_room: string;
     fk_id_user: string;
     fk_id_schedule: string;
-    date: Date;
+    reservationDate: string;
 
-    constructor({fk_id_room, fk_id_user, fk_id_schedule, date}: Reservation){
+    constructor({fk_id_room, fk_id_user, fk_id_schedule, reservationDate}: Reservation){
         return Object.assign(this, {
             fk_id_room,
             fk_id_user,
             fk_id_schedule,
-            date
+            reservationDate
         });
     }
 
-    static create(fk_id_room:string, fk_id_user:string, fk_id_schedule:string, date:Date, id?:string) {
+    static create(fk_id_room:string, fk_id_user:string, fk_id_schedule:string, reservationDate:string, id?:string) {
         const reservation = new Reservation({
             id,
             fk_id_room,
             fk_id_user,
             fk_id_schedule,
-            date
+            reservationDate
         });
         return reservation;
     }

@@ -15,14 +15,15 @@ class CreateReservationController {
             fk_id_room,
             fk_id_user,
             fk_id_schedule,
-            date
+            reservationDate
         }: IReservationDTO = request.body;
+        console.log(reservationDate);
 
         const Reservation: Reservation = await this.createReservationUseCase.execute({
             fk_id_room,
             fk_id_user,
             fk_id_schedule,
-            date
+            reservationDate
         });
 
         return response.status(201).json(Reservation);

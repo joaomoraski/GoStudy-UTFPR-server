@@ -22,7 +22,7 @@ const ReservationDB = connection.define('reservation', {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    date: {
+    reservationDate: {
         type: DataTypes.STRING,
         allowNull: false
     }
