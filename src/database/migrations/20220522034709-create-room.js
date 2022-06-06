@@ -14,7 +14,7 @@ module.exports = {
                 allowNull: false,
                 onDelete: "CASCADE",
                 references: {
-                    model: "Institute",
+                    model: "institute",
                     key: "id",
                     as: "fk_id_institute"
                 }

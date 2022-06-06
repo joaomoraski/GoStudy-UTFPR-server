@@ -3,7 +3,7 @@ import { CreateRoomUseCase } from './CreateRoomUseCase';
 import { IRoomDTO } from '../RoomDTO'
 import { Room } from '../../../../entities/Room'
 
-class CreateUserController {
+class CreateRoomController {
     constructor(
         private createroomUseCase: CreateRoomUseCase
     ) { }
@@ -25,4 +25,4 @@ class CreateUserController {
     }
 }
 
-export { CreateUserController };
+export { CreateRoomController };

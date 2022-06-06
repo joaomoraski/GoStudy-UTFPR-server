@@ -10,7 +10,7 @@ class ReservationRepository implements IReservationRepository {
 
     async create(reservation: Reservation): Promise<Reservation> {
         try {
-            await ReservationDB.create({fk_id_room: reservation.fk_id_room, fk_id_user: reservation.fk_id_user, fk_id_schedule: reservation.fk_id_schedule, date: reservation.date});
+            await ReservationDB.create({fk_id_room: reservation.fk_id_room, fk_id_user: reservation.fk_id_user, fk_id_schedule: reservation.fk_id_schedule, reservationDate: reservation.reservationDate});
             return reservation;
         } catch(err) {
             throw new Error(err);
@@ -23,12 +23,14 @@ class ReservationRepository implements IReservationRepository {
     }
 
     async findById(id: string): Promise<Reservation> {
+        console.log(id)
         const reservation: any = await ReservationDB.findByPk(id);
+        console.log(reservation)
         return reservation;
     }
 
     async update(reservation: Reservation): Promise<Reservation> {
-        await ReservationDB.update({fk_id_room: reservation.fk_id_room, fk_id_user: reservation.fk_id_user, fk_id_schedule: reservation.fk_id_schedule, date: reservation.date}, {where: {id: reservation.id}});
+        await ReservationDB.update({fk_id_room: reservation.fk_id_room, fk_id_user: reservation.fk_id_user, fk_id_schedule: reservation.fk_id_schedule, reservationDate: reservation.reservationDate}, {where: {id: reservation.id}});
         return reservation;
     }
 
