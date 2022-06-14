@@ -24,7 +24,8 @@ lerna-debug.log*
 .pnpm-debug.log*
 
 ### Sequelize ###
-config/config.json
+src/database/config/config.json
+
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
