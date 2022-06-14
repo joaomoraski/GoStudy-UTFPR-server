@@ -4,7 +4,7 @@
   "main": "server.ts",
   "scripts": {
     "dev": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts",
-    "setup": "cd ./src/database/ && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && cd ../../"
+    "setup": "cd ./src/database/ && npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && cd ../../"
   },
   "husky": {
     "hooks": {
