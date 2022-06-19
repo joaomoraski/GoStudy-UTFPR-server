@@ -7,6 +7,7 @@ import { authController } from './modules/Auth/'
 import { createInstituteController } from './modules/Institute/useCases/createInstitute/';
 import { showInstituteController } from './modules/Institute/useCases/showInstitute/';
 import { updateInstituteController } from './modules/Institute/useCases/updateInstitute/';
+import { browseInstituteController } from './modules/Institute/useCases/browseInstitute';
 import { deleteInstituteController } from './modules/Institute/useCases/deleteInstitute/';
 import { createReservationController } from './modules/Reservation/useCases/createReservation';
 import { showReservationController } from './modules/Reservation/useCases/showReservation';
@@ -41,7 +42,11 @@ router.post('/institute', (req, res) => {
 })
 
 router.get('/institute', (req, res) => {
-    return showInstituteController.handle(req, res); 
+    return showInstituteController.handle(req, res);
+})
+
+router.get('/institute/:instituteId', (req, res) => {
+    return browseInstituteController.handle(req, res);
 })
 
 router.put('/institute', (req, res) => {
