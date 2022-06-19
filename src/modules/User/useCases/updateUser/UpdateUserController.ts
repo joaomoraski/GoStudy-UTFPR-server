@@ -9,7 +9,8 @@ class UpdateUserController {
     ) { }
 
     async handle(request: Request, response: Response): Promise<Response> {
-        const { id, fk_id_institute, name, ra, telephone, email, password, isAdmin } = request.body;
+        const { fk_id_institute, name, ra, telephone, email, password, isAdmin } = request.body;
+        const id = request.params.id;
         const user : User = await this.updateUserUseCase.execute({
             id,
             fk_id_institute,

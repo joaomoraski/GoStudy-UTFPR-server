@@ -10,7 +10,7 @@ class DeleteInstituteController{
     async handle(request: Request, response: Response): Promise<Response> {
         
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        const {id} = request.body;
+        const id = request.params.id;
 
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         const institute: Institute = await this.deleteInstituteUseCase.execute(id);

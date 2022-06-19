@@ -1,19 +1,19 @@
 import { Room } from '../../../../entities/Room';
 import { IRoomRepository } from '../../IRoomRepository';
 
-class ShowRoomUseCase {
+class BrowseRoomUseCase {
     constructor(
         private roomRepository: IRoomRepository
     ) {}
     
-    async execute(): Promise<Room[]>{
-        const room : Room[] = await this.roomRepository.listAllRooms();
-
-        if(!room) {
+    async execute(query:string): Promise<Room>{
+        try {
+            const room:Room = await this.roomRepository.findById(query);
+            return room;
+        } catch (error) {
             throw new Error('Sala não existe');
         }
 
-        return room;
     }
 }
-export { ShowRoomUseCase };
+export { BrowseRoomUseCase };

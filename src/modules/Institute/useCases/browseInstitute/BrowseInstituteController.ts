@@ -8,7 +8,7 @@ class BrowseInstituteController{
     ) {}
 
     async handle(request: Request, response: Response): Promise<Response> {
-        const institute: Institute = await this.browseInstituteUseCase.execute(request.params.instituteId);
+        const institute: Institute = await this.browseInstituteUseCase.execute(request.params.id);
         if (institute) {
             return response.status(201).json(institute);
         }

@@ -8,7 +8,7 @@ class ShowRoomController{
     ) {}
 
     async handle(request: Request, response: Response): Promise<Response> {
-        const room: Room[] = await this.showRoomUseCase.execute();
+        const room : Room[] = await this.showRoomUseCase.execute();
 
         return response.status(201).json(room);
     }
