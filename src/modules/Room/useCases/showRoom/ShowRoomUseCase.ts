@@ -7,13 +7,12 @@ class ShowRoomUseCase {
     ) {}
     
     async execute(): Promise<Room[]>{
-        const room : Room[] = await this.roomRepository.listAllRooms();
-
-        if(!room) {
-            throw new Error('Sala não existe');
+        try {
+            const room : Room[] = await this.roomRepository.listAllRooms();
+            return room;
+        } catch (error) {
+            return null;
         }
-
-        return room;
     }
 }
 export { ShowRoomUseCase };

@@ -12,7 +12,7 @@ class BrowseInstituteController{
         if (institute) {
             return response.status(201).json(institute);
         }
-        return response.status(404).json({Erro : 'Instituto não encontrado'});
+        return response.status(404).send('Instituto não encontrado');
     }
 }
 
