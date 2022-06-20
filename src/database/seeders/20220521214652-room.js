@@ -7,23 +7,23 @@ module.exports = {
         return queryInterface.bulkInsert('room', [
             {
                 fk_id_institute: 1,
-                roomNumber: 1
+                number: 1
             },
             {
                 fk_id_institute: 1,
-                roomNumber: 2
+                number: 2
             },
             {
                 fk_id_institute: 1,
-                roomNumber: 3
+                number: 3
             },
             {
                 fk_id_institute: 2,
-                roomNumber: 1
+                number: 1
             },
             {
                 fk_id_institute: 2,
-                roomNumber: 1
+                number: 1
             },
         ]);
     },
