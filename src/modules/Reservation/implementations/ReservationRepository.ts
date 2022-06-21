@@ -23,9 +23,7 @@ class ReservationRepository implements IReservationRepository {
     }
 
     async findById(id: string): Promise<Reservation> {
-        console.log(id)
         const reservation: any = await ReservationDB.findByPk(id);
-        console.log(reservation)
         return reservation;
     }
 

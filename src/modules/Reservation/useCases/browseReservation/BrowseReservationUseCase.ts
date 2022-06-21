@@ -9,9 +9,11 @@ class BrowseReservationUseCase {
     async execute(query:string): Promise<Reservation>{
         try {
             const reservation:Reservation = await this.reservationRepository.findById(query);
+            if (!reservation) throw new Error("Not Found Exception");
             return reservation;
         } catch (error) {
-            throw new Error('Reserva não existe');
+            console.log((error as Error).message);
+            return null;
         }
 
     }

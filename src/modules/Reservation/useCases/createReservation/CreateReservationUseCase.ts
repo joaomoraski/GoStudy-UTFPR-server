@@ -8,11 +8,16 @@ class CreateReservationUseCase {
     ) {}
     
     async execute( data: IReservationDTO): Promise<Reservation>{
-        const reservation: Reservation = new Reservation(data);
+        try {
+            const reservation: Reservation = new Reservation(data);
 
-        await this.reservationRepository.create(reservation);
-
-        return reservation;
+            await this.reservationRepository.create(reservation);
+            if (!reservation) throw new Error("Null Exception");
+            return reservation;
+        } catch (error) {
+            console.log((error as Error).message);
+            return null;
+        }
     }
 }
 export { CreateReservationUseCase };

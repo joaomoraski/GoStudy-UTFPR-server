@@ -33,8 +33,12 @@ class UpdateInstituteUseCase {
             institute.closingTime = closingTime ? closingTime : institute.closingTime;
 
             await this.instituteRepository.update(institute);
+
+            if (!institute) throw new Error("Not Found Exception");
+
             return institute;
         } catch (error) {
+            console.log((error as Error).message);
             return null;
         }
         

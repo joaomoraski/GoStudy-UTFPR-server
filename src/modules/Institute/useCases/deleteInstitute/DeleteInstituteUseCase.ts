@@ -10,8 +10,10 @@ class DeleteInstituteUseCase {
         try {
             const institute:Institute = await this.instituteRepository.findById(id);
             await this.instituteRepository.delete(institute);
+            if (!institute) throw new Error("Null Exception");
             return institute;
         } catch (error) {
+            console.log((error as Error).message);
             return null;
         }
         

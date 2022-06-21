@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Request, Response } from 'express';
 import { CreateReservationUseCase } from './CreateReservationUseCase';
 import { IReservationDTO } from '../ReservationDTO'
@@ -10,23 +11,19 @@ class CreateReservationController {
 
     async handle(request: Request, response: Response): Promise<Response> {
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const {
             fk_id_room,
             fk_id_user,
             fk_id_schedule,
             reservationDate
-        }: IReservationDTO = request.body;
-        console.log(reservationDate);
+        } = request.body;
+        
+        const reservationDTO : IReservationDTO = {fk_id_room, fk_id_user, fk_id_schedule, reservationDate};
 
-        const Reservation: Reservation = await this.createReservationUseCase.execute({
-            fk_id_room,
-            fk_id_user,
-            fk_id_schedule,
-            reservationDate
-        });
+        const reservation: Reservation = await this.createReservationUseCase.execute(reservationDTO);
 
-        return response.status(201).json(Reservation);
+        if (reservation !== null) return response.status(201).json(reservation);
+        return response.status(404).send("Erro ao criar a Reserva");
     }
 }
 
