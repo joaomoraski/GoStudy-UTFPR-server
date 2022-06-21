@@ -1,12 +1,23 @@
 import { app } from './app'
+import { connection } from './connectDB'
 
-const port = 3000;
-const a = 2;
+
+const port = process.env.BACKEND_APP_PORT;
 
 app.listen(port);
 
-if(a === 2){
-    console.log("não é pra dar erro");
-}
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
+(async function connectionDb(){
+    try {
+        const resultado = await connection.query("show tables");
+        console.log(resultado);
+    } catch (error) {
+        console.log(error);
+    }
+    await connection.authenticate()
+        .then(()=>console.log('Connection has been established successfully.'))
+        .catch ((error)=>console.error('Unable to connect to the database:', error))
+})();
+
 
 console.log(`Rodando em ${port}`)

@@ -23,6 +23,10 @@ yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
 
+### Sequelize ###
+src/database/config/config.json
+
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
@@ -84,6 +88,7 @@ web_modules/
 .vscode-test
 
 # yarn v2
+yarn.lock
 .yarn/cache
 .yarn/unplugged
 .yarn/build-state.yml
