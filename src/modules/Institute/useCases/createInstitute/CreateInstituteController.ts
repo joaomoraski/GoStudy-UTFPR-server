@@ -23,7 +23,8 @@ class CreateInstituteController{
 
         const institute: Institute = await this.createInstituteUseCase.execute(instituteDTO);
 
-        return response.status(201).json(institute);
+        if (institute !== null) return response.status(201).json(institute);
+        return response.status(404).send("Erro ao criar instituto");
     }
 }
 

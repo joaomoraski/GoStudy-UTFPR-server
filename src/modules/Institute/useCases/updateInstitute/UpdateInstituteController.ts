@@ -20,7 +20,8 @@ class UpdateInstituteController{
             closingTime
         });
 
-        return response.status(201).json(institute);
+        if (institute !== null) return response.status(201).json(institute);
+        return response.status(404).send("Falha ao atualizar o instituto");
     }
 }
 

@@ -23,21 +23,21 @@ class UpdateInstituteUseCase {
         openingTime,
         closingTime
     }: IUpdateInstitute): Promise<Institute>{
-        const institute:Institute = await this.instituteRepository.findById(id);
+        try {
+            const institute:Institute = await this.instituteRepository.findById(id);
 
-        if(!institute) {
-            throw new Error('Instituto não existe');
+            institute.name = name ? name : institute.name;
+            institute.city = city ? city : institute.city;
+            institute.telephone = telephone ? telephone : institute.telephone;
+            institute.openingTime = openingTime ? openingTime : institute.openingTime;
+            institute.closingTime = closingTime ? closingTime : institute.closingTime;
+
+            await this.instituteRepository.update(institute);
+            return institute;
+        } catch (error) {
+            return null;
         }
-
-        institute.name = name ? name : institute.name;
-        institute.city = city ? city : institute.city;
-        institute.telephone = telephone ? telephone : institute.telephone;
-        institute.openingTime = openingTime ? openingTime : institute.openingTime;
-        institute.closingTime = closingTime ? closingTime : institute.closingTime;
-
-        await this.instituteRepository.update(institute);
-
-        return institute;
+        
     }
 }
 export { UpdateInstituteUseCase };

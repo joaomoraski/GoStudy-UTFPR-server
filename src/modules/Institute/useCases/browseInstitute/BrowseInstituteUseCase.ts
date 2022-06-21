@@ -11,7 +11,7 @@ class BrowseInstituteUseCase {
             const institute:Institute = await this.instituteRepository.findById(query);
             return institute;
         } catch (error) {
-            throw new Error('Instituto não existe');
+            return null;
         }
 
     }

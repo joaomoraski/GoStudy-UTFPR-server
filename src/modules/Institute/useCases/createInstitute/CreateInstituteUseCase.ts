@@ -8,10 +8,15 @@ class CreateInstituteUseCase {
     ) {}
     
     async execute(data:IInstituteDTO): Promise<Institute>{
-        const institute: Institute = new Institute(data);
-        await this.instituteRepository.create(institute);
-
-        return institute;
+        try {
+            const institute: Institute = new Institute(data);
+            await this.instituteRepository.create(institute);
+    
+            return institute;
+        } catch(error) {
+            return null;
+        }
+        
     }
 }
 export { CreateInstituteUseCase };

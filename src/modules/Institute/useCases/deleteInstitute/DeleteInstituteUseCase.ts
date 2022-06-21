@@ -7,15 +7,14 @@ class DeleteInstituteUseCase {
     ) {}
     
     async execute(id: string): Promise<Institute>{
-        const institute:Institute = await this.instituteRepository.findById(id);
-
-        if(!institute) {
-            throw new Error('Instituto não existe');
+        try {
+            const institute:Institute = await this.instituteRepository.findById(id);
+            await this.instituteRepository.delete(institute);
+            return institute;
+        } catch (error) {
+            return null;
         }
-
-        await this.instituteRepository.delete(institute);
-
-        return institute;
+        
     }
 }
 export { DeleteInstituteUseCase };

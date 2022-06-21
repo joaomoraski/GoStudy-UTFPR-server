@@ -7,13 +7,12 @@ class ShowInstituteUseCase {
     ) {}
     
     async execute(): Promise<Institute[]>{
-        const institute:Institute[] = await this.instituteRepository.listAllInstitutes();
-
-        if(!institute) {
-            throw new Error('Instituto não existe');
+        try {
+            const institute:Institute[] = await this.instituteRepository.listAllInstitutes();
+            return institute;
+        } catch (error) {
+            return null;
         }
-
-        return institute;
     }
 }
 export { ShowInstituteUseCase };
