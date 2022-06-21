@@ -11,7 +11,7 @@ class DeleteReservationController{
 
     async handle(request: Request, response: Response): Promise<Response> {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        const {id} = request.body;
+        const id = request.params.id;
         const reservation: Reservation = await this.deleteReservationUseCase.execute(id);
 
         return response.status(201).json(reservation);

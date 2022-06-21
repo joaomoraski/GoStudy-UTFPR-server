@@ -9,7 +9,8 @@ class UpdateScheduleController {
     ) { }
 
     async handle(request: Request, response: Response): Promise<Response> {
-        const { id, label, initial_time, final_time } = request.body;
+        const { label, initial_time, final_time } = request.body;
+        const id = request.params.id;
         const schedule : Schedule = await this.updateScheduleUseCase.execute({
             id,
             label,

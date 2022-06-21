@@ -1,23 +1,21 @@
 import { Reservation } from '../../../../entities/Reservation';
 import { IReservationRepository } from '../../IReservationRepository';
-import { IReservationDTO } from '../ReservationDTO';
 
-class CreateReservationUseCase {
+class BrowseReservationUseCase {
     constructor(
         private reservationRepository: IReservationRepository
     ) {}
     
-    async execute( data: IReservationDTO): Promise<Reservation>{
+    async execute(query:string): Promise<Reservation>{
         try {
-            const reservation: Reservation = new Reservation(data);
-
-            await this.reservationRepository.create(reservation);
-            if (!reservation) throw new Error("Null Exception");
+            const reservation:Reservation = await this.reservationRepository.findById(query);
+            if (!reservation) throw new Error("Not Found Exception");
             return reservation;
         } catch (error) {
             console.log((error as Error).message);
             return null;
         }
+
     }
 }
-export { CreateReservationUseCase };
+export { BrowseReservationUseCase };

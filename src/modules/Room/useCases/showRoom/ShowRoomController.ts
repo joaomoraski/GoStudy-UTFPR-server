@@ -8,9 +8,9 @@ class ShowRoomController{
     ) {}
 
     async handle(request: Request, response: Response): Promise<Response> {
-        const room: Room[] = await this.showRoomUseCase.execute();
-
-        return response.status(201).json(room);
+        const room : Room[] = await this.showRoomUseCase.execute();
+        if (room !== null) return response.status(201).json(room);
+        return response.status(404).send("Não há salas criadas");
     }
 }
 

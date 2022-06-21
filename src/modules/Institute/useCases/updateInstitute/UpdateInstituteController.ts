@@ -9,7 +9,8 @@ class UpdateInstituteController{
     ) {}
 
     async handle(request: Request, response: Response): Promise<Response> {
-        const { id, name, city, telephone, openingTime, closingTime } = request.body;
+        const { name, city, telephone, openingTime, closingTime } = request.body;
+        const id = request.params.id;
         const institute:Institute = await this.updateInstituteUseCase.execute({
             id,
             name,
@@ -19,7 +20,8 @@ class UpdateInstituteController{
             closingTime
         });
 
-        return response.status(201).json(institute);
+        if (institute !== null) return response.status(201).json(institute);
+        return response.status(404).send("Falha ao atualizar o instituto");
     }
 }
 

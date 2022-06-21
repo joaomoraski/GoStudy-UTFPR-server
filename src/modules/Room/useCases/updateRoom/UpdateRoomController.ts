@@ -9,7 +9,8 @@ class UpdateRoomController {
     ) { }
 
     async handle(request: Request, response: Response): Promise<Response> {
-        const { id, fk_id_institute, number } = request.body;
+        const { fk_id_institute, number } = request.body;
+        const id = request.params.id;
         const room: Room = await this.updateRoomUseCase.execute({
             id,
             fk_id_institute,

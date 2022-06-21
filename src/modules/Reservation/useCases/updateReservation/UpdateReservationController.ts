@@ -9,7 +9,8 @@ class UpdateReservationController {
     ) { }
 
     async handle(request: Request, response: Response): Promise<Response> {
-        const { id, fk_id_room, fk_id_user, fk_id_schedule, reservationDate } = request.body;
+        const { fk_id_room, fk_id_user, fk_id_schedule, reservationDate } = request.body;
+        const id = request.params.id;
         const reservation: Reservation = await this.updateReservationUseCase.execute({
             id,
             fk_id_room,
