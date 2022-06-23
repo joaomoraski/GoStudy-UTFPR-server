@@ -13,7 +13,8 @@ class DeleteScheduleController{
 
         const schedule: Schedule = await this.deleteScheduleUseCase.execute(id);
 
-        return response.status(201).json(schedule);
+        if (schedule !== null) return response.status(201).json(schedule);
+        return response.status(404).send('Horário não encontrado');
     }
 }
 

@@ -17,7 +17,8 @@ class UpdateRoomHasScheduleController {
             fk_id_schedule
         });
 
-        return response.status(201).json(roomHasSchedule);
+        if (roomHasSchedule !== null) return response.status(201).json(roomHasSchedule);
+        return response.status(404).send('Falha ao atualizar a relação Sala/Horário');
     }
 }
 

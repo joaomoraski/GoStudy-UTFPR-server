@@ -8,11 +8,16 @@ class CreateScheduleUseCase {
     ) {}
     
     async execute( data: IScheduleDTO): Promise<Schedule>{
-        const schedule: Schedule = new Schedule(data);
+        try {
+            const schedule: Schedule = new Schedule(data);
 
-        await this.scheduleRepository.create(schedule);
-
-        return schedule;
+            await this.scheduleRepository.create(schedule);
+            if (!schedule) throw new Error('Null Exception');
+            return schedule;
+        } catch (error) {
+            console.log((error as Error).message);
+            return null;
+        }
     }
 }
 export { CreateScheduleUseCase };

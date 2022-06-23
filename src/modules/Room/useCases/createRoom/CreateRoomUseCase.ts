@@ -8,11 +8,17 @@ class CreateRoomUseCase {
     ) {}
     
     async execute( data: IRoomDTO): Promise<Room>{
-        const room: Room = new Room(data);
+        try {
+            const room: Room = new Room(data);
 
-        await this.roomRepository.create(room);
-
-        return room;
+            await this.roomRepository.create(room);
+            if (!room) throw new Error("Null Exception");
+            return room;
+        } catch (error) {
+            console.log((error as Error).message);
+            return null;
+            
+        }
     }
 }
 export { CreateRoomUseCase };

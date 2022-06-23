@@ -13,7 +13,8 @@ class DeleteRoomHasScheduleController{
 
         const roomHasSchedule: RoomHasSchedule = await this.deleteRoomHasScheduleUseCase.execute(id);
 
-        return response.status(201).json(roomHasSchedule);
+        if (roomHasSchedule !== null) return response.status(201).json(roomHasSchedule);
+        return response.status(404).send('Relação Sala/Horário não encontrada');
     }
 }
 

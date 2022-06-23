@@ -7,15 +7,18 @@ class DeleteRoomHasScheduleUseCase {
     ) {}
     
     async execute(id: string): Promise<RoomHasSchedule>{
-        const roomHasSchedule:RoomHasSchedule = await this.roomHasScheduleRepository.findById(id);
+        try {
+            const roomHasSchedule:RoomHasSchedule = await this.roomHasScheduleRepository.findById(id);
 
-        if(!roomHasSchedule) {
-            throw new Error('Sala não existe');
+            if(!roomHasSchedule) throw new Error('Sala não existe');
+
+            await this.roomHasScheduleRepository.delete(roomHasSchedule);
+
+            return roomHasSchedule;
+        } catch (error) {
+            console.log((error as Error).message);
+            return null;
         }
-
-        await this.roomHasScheduleRepository.delete(roomHasSchedule);
-
-        return roomHasSchedule;
     }
 }
 export { DeleteRoomHasScheduleUseCase };

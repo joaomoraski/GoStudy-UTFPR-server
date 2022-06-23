@@ -13,7 +13,8 @@ class DeleteRoomController{
 
         const room : Room = await this.deleteRoomUseCase.execute(id);
 
-        return response.status(201).json(room);
+        if (room !== null) return response.status(201).json(room);
+        return response.status(404).send('Sala não encontrada');
     }
 }
 

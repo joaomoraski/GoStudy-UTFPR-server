@@ -7,13 +7,13 @@ class ShowUserUseCase {
     ) {}
     
     async execute(): Promise<User[]>{
-        const user : User[] = await this.userRepository.listAllUsers();
-
-        if(!user) {
-            throw new Error('Usuário não existe');
+        try {
+            const user : User[] = await this.userRepository.listAllUsers();
+            return user;
+        } catch (error) {
+            console.log((error as Error).message);
+            return null;
         }
-
-        return user;
     }
 }
 export { ShowUserUseCase };

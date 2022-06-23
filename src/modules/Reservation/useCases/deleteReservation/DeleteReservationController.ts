@@ -14,7 +14,8 @@ class DeleteReservationController{
         const id = request.params.id;
         const reservation: Reservation = await this.deleteReservationUseCase.execute(id);
 
-        return response.status(201).json(reservation);
+        if (reservation !== null) return response.status(201).json(reservation);
+        return response.status(404).send("Reserva não encontrada!");
     }
 }
 

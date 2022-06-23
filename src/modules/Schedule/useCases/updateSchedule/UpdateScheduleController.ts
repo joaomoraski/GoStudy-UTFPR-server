@@ -18,7 +18,8 @@ class UpdateScheduleController {
             final_time
         });
 
-        return response.status(201).json(schedule);
+        if (schedule !== null) return response.status(201).json(schedule);
+        return response.status(404).send('Falha ao atualizar os horários');
     }
 }
 

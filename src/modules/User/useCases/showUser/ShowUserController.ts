@@ -10,7 +10,8 @@ class ShowUserController{
     async handle(request: Request, response: Response): Promise<Response> {
         const user : User[] = await this.showUserUseCase.execute();
 
-        return response.status(201).json(user);
+        if (user !== null) return response.status(201).json(user);
+        return response.status(404).send("Erro ao buscar usuários");
     }
 }
 
