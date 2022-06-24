@@ -12,7 +12,7 @@ class BrowseRoomController{
         if (room) {
             return response.status(201).json(room);
         }
-        return response.status(404).json({Erro : 'Sala não encontrado'});
+        return response.status(404).send('Sala não encontrada');
     }
 }
 

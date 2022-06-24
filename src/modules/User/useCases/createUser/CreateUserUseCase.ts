@@ -8,11 +8,16 @@ class CreateUserUseCase {
     ) {}
     
     async execute( data: IUserDTO): Promise<User>{
-        const user : User = new User(data);
+        try {
+            const user : User = new User(data);
 
-        await this.userRepository.create(user);
-
-        return user;
+            await this.userRepository.create(user);
+            if (!user) throw new Error('Null Exception');
+            return user;
+        } catch (error) {
+            console.log((error as Error).message);
+            return null;
+        }
     }
 }
 export { CreateUserUseCase };

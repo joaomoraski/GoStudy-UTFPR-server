@@ -7,13 +7,13 @@ class ShowScheduleUseCase {
     ) {}
     
     async execute(): Promise<Schedule[]>{
-        const schedule : Schedule[] = await this.scheduleRepository.listAllSchedules();
-
-        if(!schedule) {
-            throw new Error('Schedule não existe');
+        try {
+            const schedule : Schedule[] = await this.scheduleRepository.listAllSchedules();
+            return schedule;
+        } catch (error) {
+            console.log((error as Error).message);
+            return null;
         }
-
-        return schedule;
     }
 }
 export { ShowScheduleUseCase };

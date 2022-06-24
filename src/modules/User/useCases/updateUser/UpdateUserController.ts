@@ -22,7 +22,8 @@ class UpdateUserController {
             isAdmin
         });
 
-        return response.status(201).json(user);
+        if (user !== null) return response.status(201).json(user);
+        return response.status(404).send('Falha ao atualizar usuário');
     }
 }
 

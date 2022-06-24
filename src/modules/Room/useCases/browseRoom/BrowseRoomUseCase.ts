@@ -9,9 +9,11 @@ class BrowseRoomUseCase {
     async execute(query:string): Promise<Room>{
         try {
             const room:Room = await this.roomRepository.findById(query);
+            if (!room) throw new Error('Sala não existe');
             return room;
         } catch (error) {
-            throw new Error('Sala não existe');
+            console.log((error as Error).message);
+            return null;
         }
 
     }

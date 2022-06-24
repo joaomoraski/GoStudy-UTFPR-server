@@ -7,15 +7,19 @@ class DeleteReservationUseCase {
     ) {}
     
     async execute(id: string): Promise<Reservation>{
-        const reservation:Reservation = await this.ReservationRepository.findById(id);
+        try{
+            const reservation:Reservation = await this.ReservationRepository.findById(id);
 
-        if(!reservation) {
-            throw new Error('Reserva não existe');
+            if(!reservation) throw new Error('Reserva não existe');
+    
+            await this.ReservationRepository.delete(reservation);
+    
+            return reservation;
+        } catch (error) {
+            console.log((error as Error).message);
+            return null;
         }
-
-        await this.ReservationRepository.delete(reservation);
-
-        return reservation;
+        
     }
 }
 export { DeleteReservationUseCase };

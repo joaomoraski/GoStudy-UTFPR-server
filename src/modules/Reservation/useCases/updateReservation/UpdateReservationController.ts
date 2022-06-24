@@ -19,7 +19,8 @@ class UpdateReservationController {
             reservationDate
         });
 
-        return response.status(201).json(reservation);
+        if (reservation !== null) return response.status(201).json(reservation);
+        return response.status(404).send("Falha ao atualizar a reserva");
     }
 }
 

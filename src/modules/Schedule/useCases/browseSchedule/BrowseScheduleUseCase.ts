@@ -9,9 +9,11 @@ class BrowseScheduleUseCase {
     async execute(query:string): Promise<Schedule>{
         try {
             const schedule:Schedule = await this.scheduleRepository.findById(query);
+            if (!schedule) throw new Error('Horário não existe');
             return schedule;
         } catch (error) {
-            throw new Error('Sala não existe');
+            console.log((error as Error).message);
+            return null;
         }
 
     }

@@ -21,7 +21,8 @@ class CreateRoomHasScheduleController {
             fk_id_schedule
         });
 
-        return response.status(201).json(room);
+        if (room !== null) return response.status(201).json(room);
+        return response.status(404).send('Erro ao criar relação Sala/Horário');
     }
 }
 

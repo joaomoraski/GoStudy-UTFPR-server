@@ -17,18 +17,21 @@ class UpdateRoomHasScheduleUseCase {
         fk_id_room,
         fk_id_schedule
     }: IUpdateRoomHasSchedule): Promise<RoomHasSchedule> {
-        const roomHasSchedule: RoomHasSchedule = await this.roomHasScheduleRepository.findById(id);
+        try {
+            const roomHasSchedule: RoomHasSchedule = await this.roomHasScheduleRepository.findById(id);
 
-        if (!roomHasSchedule) {
-            throw new Error('Sala não existe');
+            if (!roomHasSchedule) throw new Error('Sala não existe');
+
+            roomHasSchedule.fk_id_room = fk_id_room ? fk_id_room : roomHasSchedule.fk_id_room;
+            roomHasSchedule.fk_id_schedule = fk_id_schedule ? fk_id_schedule : roomHasSchedule.fk_id_schedule;
+
+            await this.roomHasScheduleRepository.update(roomHasSchedule);
+
+            return roomHasSchedule;
+        } catch (error) {
+            console.log((error as Error).message);
+            return null;
         }
-
-        roomHasSchedule.fk_id_room = fk_id_room ? fk_id_room : roomHasSchedule.fk_id_room;
-        roomHasSchedule.fk_id_schedule = fk_id_schedule ? fk_id_schedule : roomHasSchedule.fk_id_schedule;
-
-        await this.roomHasScheduleRepository.update(roomHasSchedule);
-
-        return roomHasSchedule;
     }
 }
 export { UpdateRoomHasScheduleUseCase };

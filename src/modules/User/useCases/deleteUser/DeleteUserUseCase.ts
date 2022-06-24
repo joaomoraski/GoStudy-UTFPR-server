@@ -7,15 +7,20 @@ class DeleteUserUseCase {
     ) {}
     
     async execute(id: string): Promise<User>{
-        const user : User = await this.userRepository.findById(id);
+        try {
+            const user : User = await this.userRepository.findById(id);
 
-        if(!user) {
-            throw new Error('Usuário não existe');
+            if(!user) {
+                throw new Error('Usuário não existe');
+            }
+
+            await this.userRepository.delete(user);
+
+            return user;
+        } catch (error) {
+            console.log((error as Error).message);
+            return null;
         }
-
-        await this.userRepository.delete(user);
-
-        return user;
     }
 }
 export { DeleteUserUseCase };

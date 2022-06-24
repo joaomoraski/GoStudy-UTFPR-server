@@ -17,7 +17,8 @@ class UpdateRoomController {
             number
         });
 
-        return response.status(201).json(room);
+        if (room !== null) return response.status(201).json(room);
+        return response.status(404).send('Falha ao atualizar a sala');
     }
 }
 

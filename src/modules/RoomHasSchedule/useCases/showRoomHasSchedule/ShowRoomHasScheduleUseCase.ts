@@ -7,13 +7,14 @@ class ShowRoomHasScheduleUseCase {
     ) {}
     
     async execute(): Promise<RoomHasSchedule[]>{
-        const roomHasSchedule:RoomHasSchedule[] = await this.roomHasScheduleRepository.listAllRoomHasSchedules();
+        try {
+            const roomHasSchedule:RoomHasSchedule[] = await this.roomHasScheduleRepository.listAllRoomHasSchedules();
 
-        if(!roomHasSchedule) {
-            throw new Error('Sala não existe');
+            return roomHasSchedule;
+        } catch (error) {
+            console.log((error as Error).message);
+            return null;
         }
-
-        return roomHasSchedule;
     }
 }
 export { ShowRoomHasScheduleUseCase };
