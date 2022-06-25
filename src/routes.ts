@@ -34,6 +34,10 @@ import { showUserController } from './modules/User/useCases/showUser';
 import { browseUserController } from './modules/User/useCases/browseUser';
 import { updateUserController } from './modules/User/useCases/updateUser';
 import { deleteUserController } from './modules/User/useCases/deleteUser';
+import { verifyToken } from './middlewares/verifyToken';
+import { onlyAdmin } from './middlewares/onlyAdmin';
+import { verifyUser } from './middlewares/verifyUser';
+
 const router = Router();
 
 router.post('/auth', (req, res) => {
@@ -42,111 +46,111 @@ router.post('/auth', (req, res) => {
 
 // =================== Institute ===================
 
-router.post('/institute', (req, res) => {
+router.post('/institute', verifyToken(), onlyAdmin(), (req, res) => {
     return createInstituteController.handle(req, res);
 })
 
-router.get('/institute', (req, res) => {
+router.get('/institute', verifyToken(), onlyAdmin(), (req, res) => {
     return showInstituteController.handle(req, res);
 })
 
-router.get('/institute/:id', (req, res) => {
+router.get('/institute/:id', verifyToken(), onlyAdmin(), (req, res) => {
     return browseInstituteController.handle(req, res);
 })
 
-router.put('/institute/:id', (req, res) => {
+router.put('/institute/:id', verifyToken(), onlyAdmin(), (req, res) => {
     return updateInstituteController.handle(req, res); 
 })
 
-router.delete('/institute/:id', (req, res) => {
+router.delete('/institute/:id', verifyToken(), onlyAdmin(), (req, res) => {
     return deleteInstituteController.handle(req, res);
 })
 
 // =================== Reservation ===================
 
-router.post('/reservation', (req, res) => {
+router.post('/reservation', verifyToken(), (req, res) => {
     return createReservationController.handle(req, res);
 })
 
-router.get('/reservation', (req, res) => {
+router.get('/reservation', verifyToken(), (req, res) => {
     return showReservationController.handle(req, res); 
 })
 
-router.get('/reservation/:id', (req, res) => {
+router.get('/reservation/:id', verifyToken(), (req, res) => {
     return browseReservationController.handle(req, res);
 })
 
-router.put('/reservation/:id', (req, res) => {
+router.put('/reservation/:id', verifyToken(), (req, res) => {
     return updateReservationController.handle(req, res); 
 })
 
-router.delete('/reservation/:id', (req, res) => {
+router.delete('/reservation/:id', verifyToken(), (req, res) => {
     return deleteReservationController.handle(req, res);
 })
 
 // =================== Room ===================
 
-router.post('/room', (req, res) => {
+router.post('/room', verifyToken(), onlyAdmin(), (req, res) => {
     return createRoomController.handle(req, res);
 })
 
-router.get('/room', (req, res) => {
+router.get('/room', verifyToken(), (req, res) => {
     return showRoomController.handle(req, res); 
 })
 
-router.get('/room/:id', (req, res) => {
+router.get('/room/:id', verifyToken(), (req, res) => {
     return browseRoomController.handle(req, res);
 })
 
-router.put('/room/:id', (req, res) => {
+router.put('/room/:id', verifyToken(), onlyAdmin(), (req, res) => {
     return updateRoomController.handle(req, res); 
 })
 
-router.delete('/room/:id', (req, res) => {
+router.delete('/room/:id', verifyToken(), onlyAdmin(), (req, res) => {
     return deleteRoomController.handle(req, res);
 })
 
 // =================== RoomHasSchedule ===================
 
-router.post('/roomHasSchedule', (req, res) => {
+router.post('/roomHasSchedule', verifyToken(), onlyAdmin(), (req, res) => {
     return createRoomHasScheduleController.handle(req, res);
 })
 
-router.get('/roomHasSchedule', (req, res) => {
+router.get('/roomHasSchedule', verifyToken(), onlyAdmin(), (req, res) => {
     return showRoomHasScheduleController.handle(req, res); 
 })
 
-router.get('/roomHasSchedule/:id', (req, res) => {
+router.get('/roomHasSchedule/:id', verifyToken(), onlyAdmin(), (req, res) => {
     return browseRoomHasScheduleController.handle(req, res); 
 })
 
-router.put('/roomHasSchedule/:id', (req, res) => {
+router.put('/roomHasSchedule/:id', verifyToken(), onlyAdmin(), (req, res) => {
     return updateRoomHasScheduleController.handle(req, res); 
 })
 
-router.delete('/roomHasSchedule/:id', (req, res) => {
+router.delete('/roomHasSchedule/:id', verifyToken(), onlyAdmin(), (req, res) => {
     return deleteRoomHasScheduleController.handle(req, res);
 })
 
 // =================== Schedule ===================
 
-router.post('/schedule', (req, res) => {
+router.post('/schedule', verifyToken(), onlyAdmin(), (req, res) => {
     return createScheduleController.handle(req, res);
 })
 
-router.get('/schedule', (req, res) => {
+router.get('/schedule', verifyToken(), onlyAdmin(), (req, res) => {
     return showScheduleController.handle(req, res); 
 })
 
-router.get('/schedule/:id', (req, res) => {
+router.get('/schedule/:id', verifyToken(), onlyAdmin(), (req, res) => {
     return browseScheduleController.handle(req, res); 
 })
 
-router.put('/schedule/:id', (req, res) => {
+router.put('/schedule/:id', verifyToken(), onlyAdmin(), (req, res) => {
     return updateScheduleController.handle(req, res); 
 })
 
-router.delete('/schedule/:id', (req, res) => {
+router.delete('/schedule/:id', verifyToken(), onlyAdmin(), (req, res) => {
     return deleteScheduleController.handle(req, res);
 })
 
@@ -156,19 +160,19 @@ router.post('/user', (req, res) => {
     return createUserController.handle(req, res);
 })
 
-router.get('/user', (req, res) => {
+router.get('/user', verifyToken(), onlyAdmin(), (req, res) => {
     return showUserController.handle(req, res); 
 })
 
-router.get('/user/:id', (req, res) => {
+router.get('/user/:id', verifyToken(), verifyUser(), (req, res) => {
     return browseUserController.handle(req, res); 
 })
 
-router.put('/user/:id', (req, res) => {
+router.put('/user/:id', verifyToken(), verifyUser(), (req, res) => {
     return updateUserController.handle(req, res); 
 })
 
-router.delete('/user/:id', (req, res) => {
+router.delete('/user/:id', verifyToken(), verifyUser(), (req, res) => {
     return deleteUserController.handle(req, res);
 })
 
