@@ -6,12 +6,11 @@ import { User } from '../../entities/User'
 import { IUserRepository } from '../User/IUserRepository'
 import { sign } from 'jsonwebtoken'
 
-// const SECRET = process.env.SECRET;
 
 class AuthController {
     constructor(
         private userRepository: IUserRepository
-    ) {}
+    ) { }
     async authenticate(req: Request, res: Response) {
         const { ra, password } = req.body;
 
@@ -29,8 +28,8 @@ class AuthController {
                 {message: 'Senha inválida'}
             );
         }
-
-        const token = sign({ id: user.id }, "SECRET", { expiresIn: '1d' });
+        const secret = process.env.SECRET;
+        const token = sign({ id: user.id }, secret, {noTimestamp:true, expiresIn: '1d' });
         return res.json({
             user,
             token
