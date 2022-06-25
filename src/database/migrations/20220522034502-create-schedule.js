@@ -12,11 +12,11 @@ module.exports = {
             label: {
                 type: Sequelize.STRING,
             },
-            initialTime: {
+            initial_time: {
                 type: Sequelize.TIME,
                 allowNull: false
             },
-            finalTime: {
+            final_time: {
                 type: Sequelize.TIME,
                 allowNull: false
             },
