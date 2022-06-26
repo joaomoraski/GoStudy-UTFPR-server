@@ -1,4 +1,5 @@
 import { RoomDB } from "../../../database/models/Room";
+import { InstituteDB } from "../../../database/models/Institute";
 import { Room } from "../../../entities/Room";
 import { IRoomRepository } from "../IRoomRepository";
 
@@ -16,7 +17,7 @@ class RoomRepository implements IRoomRepository {
     }
 
     async listAllRooms(): Promise<Room[]> {
-        const rooms: any[] = await RoomDB.findAll();
+        const rooms: any[] = await RoomDB.findAll({include: [{ model: InstituteDB }]});
         return rooms;
     }
 
