@@ -14,6 +14,16 @@ class ReservationRepository implements IReservationRepository {
         }
     }
 
+    async findByRoomAndDate(room: string, reservationDate: string): Promise<Reservation[]> {
+        const reservations: any[] = await ReservationDB.findAll({
+            where: {
+                fk_id_room: room,
+                reservationDate: reservationDate
+            }
+        });
+        return reservations;
+    }
+
     async listAllReservations(): Promise<Reservation[]> {
         const reservations: any[] = await ReservationDB.findAll();
         return reservations;

@@ -76,6 +76,10 @@ router.get('/reservation/:id', verifyToken(), (req, res) => {
     return browseReservationController.handle(req, res);
 })
 
+router.get('/reservation/filter/:id_room&:reservationDate', verifyToken(), (req, res) => {
+    return browseReservationController.handleFilter(req, res);
+})
+
 router.put('/reservation/:id', verifyToken(), (req, res) => {
     return updateReservationController.handle(req, res); 
 })
