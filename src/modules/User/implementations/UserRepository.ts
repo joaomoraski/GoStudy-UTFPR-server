@@ -24,8 +24,21 @@ class UserRepository implements IUserRepository {
     }
 
     async findByRA(ra:string): Promise<User> {
-        const users: any[] = await UserDB.findAll({where: { ra: ra}});
+        const users: any[] = await UserDB.findAll({
+            where: {
+                ra: ra
+            }
+        });
         return users[0];
+    }
+
+    async findByEmail(email: string): Promise<User> {
+        const user: any = await UserDB.findOne({
+            where: {
+                email: email
+            }
+        });
+        return user;
     }
 
     async update(user : User): Promise<User> {
