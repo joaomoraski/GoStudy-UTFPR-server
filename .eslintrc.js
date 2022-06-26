@@ -21,8 +21,7 @@ module.exports = {
             // instead of extending them outside the `overrides`.
             // If you don't want to extend any rules, you don't need an `extends` attribute.
             extends: [
-                'plugin:@typescript-eslint/recommended',
-                'plugin:@typescript-eslint/recommended-requiring-type-checking',
+                'plugin:@typescript-eslint/recommended'
             ],
             "parserOptions": { "project": ["./tsconfig.json"] },
         }
@@ -43,6 +42,14 @@ module.exports = {
         "spaced-comment": "error",
         "indent": ["error", 4],
         "linebreak-style": ["error", "unix"],
-        "no-multiple-empty-lines": "error"
+        "no-multiple-empty-lines": "error",
+        "@typescript-eslint/no-unsafe-assignment": "off",
+        "@typescript-eslint/no-unsafe-argument": "off",
+        "@typescript-eslint/no-unsafe-call": "off",
+        "@typescript-eslint/no-unsafe-return": "off",
+        "@typescript-eslint/no-unsafe-member-access": "off",
+        "@typescript-eslint/no-misused-promises": "off",
+        "@typescript-eslint/no-floating-promises": "off",
+        "@typescript-eslint/no-explicit-any": "off"
     }
 }

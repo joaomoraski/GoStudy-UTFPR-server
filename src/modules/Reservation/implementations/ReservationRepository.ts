@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { ReservationDB } from "../../../database/models/Reservation";
 import { Reservation } from "../../../entities/Reservation";
 import { IReservationRepository } from "../IReservationRepository";

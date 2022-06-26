@@ -12,8 +12,8 @@ class DeleteInstituteController{
         const id = request.params.id;
         const institute: Institute = await this.deleteInstituteUseCase.execute(id);
 
-        if (institute !== null) return response.status(201).json(institute);
-        return response.status(404).send("Instituto não encontrado");
+        if (institute !== null) return response.status(200).json(institute);
+        return response.status(404).json({message:"Instituto não encontrado"});
     }
 }
 

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { CreateUserUseCase } from './CreateUserUseCase';
 import { CreateUserController} from './CreateUserController';
 import { UserRepository } from '../../implementations/UserRepository';

@@ -1,11 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Request, Response } from 'express'
 import { User } from '../../entities/User'
 import { IUserRepository } from '../User/IUserRepository'
 import { sign } from 'jsonwebtoken'
-
 
 class AuthController {
     constructor(
@@ -30,6 +26,7 @@ class AuthController {
         }
         const secret = process.env.SECRET;
         const token = sign({ id: user.id }, secret, {noTimestamp:true, expiresIn: '1d' });
+
         return res.json({
             user,
             token

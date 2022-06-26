@@ -9,7 +9,7 @@ class BrowseUserController{
 
     async handle(request: Request, response: Response): Promise<Response> {
         const user: User = await this.browseUserUseCase.execute(request.params.id);
-        if (user !== null) return response.status(201).json(user);
+        if (user !== null) return response.status(200).json(user);
         return response.status(404).send('Usuário não encontrado');
     }
 }

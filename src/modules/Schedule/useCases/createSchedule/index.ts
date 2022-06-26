@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { CreateScheduleUseCase } from './CreateScheduleUseCase';
 import { CreateScheduleController} from './CreateScheduleController';
 import { ScheduleRepository } from '../../implementations/ScheduleRepository';

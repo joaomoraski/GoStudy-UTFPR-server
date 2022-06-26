@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { UpdateUserUseCase } from './UpdateUserUseCase';
 import { UpdateUserController} from './UpdateUserController';
 import { UserRepository } from '../../implementations/UserRepository';

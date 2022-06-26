@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Request, Response } from 'express';
 import { UpdateRoomUseCase } from './UpdateRoomUseCase';
 import { Room } from '../../../../entities/Room'
@@ -17,7 +16,7 @@ class UpdateRoomController {
             number
         });
 
-        if (room !== null) return response.status(201).json(room);
+        if (room !== null) return response.status(200).json(room);
         return response.status(404).send('Falha ao atualizar a sala');
     }
 }

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Request, Response } from 'express';
 import { UpdateInstituteUseCase } from './UpdateInstituteUseCase';
 import { Institute } from '../../../../entities/Institute'
@@ -20,8 +19,8 @@ class UpdateInstituteController{
             closingTime
         });
 
-        if (institute !== null) return response.status(201).json(institute);
-        return response.status(404).send("Falha ao atualizar o instituto");
+        if (institute !== null) return response.status(200).json(institute);
+        return response.status(404).json({message:"Falha ao atualizar o instituto"});
     }
 }
 

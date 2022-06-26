@@ -8,12 +8,11 @@ class DeleteRoomHasScheduleController{
     ) {}
 
     async handle(request: Request, response: Response): Promise<Response> {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const id : string = request.params.id;
 
         const roomHasSchedule: RoomHasSchedule = await this.deleteRoomHasScheduleUseCase.execute(id);
 
-        if (roomHasSchedule !== null) return response.status(201).json(roomHasSchedule);
+        if (roomHasSchedule !== null) return response.status(200).json(roomHasSchedule);
         return response.status(404).send('Relação Sala/Horário não encontrada');
     }
 }
