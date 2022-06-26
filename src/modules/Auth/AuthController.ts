@@ -9,11 +9,13 @@ class AuthController {
     ) { }
     async authenticate(req: Request, res: Response) {
         try {
-            const { ra, password } = req.body;
+            const { email, password } = req.body;
+            console.log(email);
 
-            const user:User = await this.userRepository.findByRA(ra);
+            const user:User = await this.userRepository.findByEmail(email);
+            console.log(user);
             if(!user){
-                return res.status(401).send({message: 'RA inválido'});
+                return res.status(401).send({message: 'Email inválido'});
             }
 
             const validPass = password === user.password;
