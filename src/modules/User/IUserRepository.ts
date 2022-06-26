@@ -5,6 +5,7 @@ interface IUserRepository {
     listAllUsers(): Promise<User[]>;
     findById(id: string): Promise<User>;
     findByRA(ra: string): Promise<User>;
+    findByEmail(email: string): Promise<User>;
     update(User: User): Promise<User>;
     delete(User: User): Promise<User>;
 }
