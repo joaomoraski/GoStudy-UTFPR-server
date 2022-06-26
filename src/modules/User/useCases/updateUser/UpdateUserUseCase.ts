@@ -40,7 +40,7 @@ class UpdateUserUseCase {
             user.telephone = telephone ? telephone : user.telephone;
             user.email = email ? email : user.email;
             user.password = password ? password : user.password;
-            user.isAdmin = isAdmin ? isAdmin : user.isAdmin;
+            user.isAdmin = (isAdmin === null || isAdmin === undefined) ? user.isAdmin : isAdmin;
 
             await this.userRepository.update(user);
 
