@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Request, Response } from 'express';
 import { CreateReservationUseCase } from './CreateReservationUseCase';
 import { IReservationDTO } from '../ReservationDTO'
@@ -23,7 +22,7 @@ class CreateReservationController {
         const reservation: Reservation = await this.createReservationUseCase.execute(reservationDTO);
 
         if (reservation !== null) return response.status(201).json(reservation);
-        return response.status(404).send("Erro ao criar a Reserva");
+        return response.status(404).json({message:"Erro ao criar a Reserva"});
     }
 }
 

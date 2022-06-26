@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Request, Response } from 'express';
 import { UpdateScheduleUseCase } from './UpdateScheduleUseCase';
 import { Schedule } from '../../../../entities/Schedule'
@@ -18,7 +17,7 @@ class UpdateScheduleController {
             final_time
         });
 
-        if (schedule !== null) return response.status(201).json(schedule);
+        if (schedule !== null) return response.status(200).json(schedule);
         return response.status(404).send('Falha ao atualizar os horários');
     }
 }

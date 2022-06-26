@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { ShowRoomUseCase } from './ShowRoomUseCase';
 import { ShowRoomController} from './ShowRoomController';
 import { RoomRepository } from '../../implementations/RoomRepository';

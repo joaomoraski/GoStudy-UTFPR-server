@@ -10,7 +10,6 @@ class CreateUserController {
 
     async handle(request: Request, response: Response): Promise<Response> {
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const {
             fk_id_institute,
             name,

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { DeleteRoomUseCase } from './DeleteRoomUseCase';
 import { DeleteRoomController} from './DeleteRoomController';
 import { RoomRepository } from '../../implementations/RoomRepository';

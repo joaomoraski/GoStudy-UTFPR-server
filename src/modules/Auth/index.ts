@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { AuthController} from './AuthController';
 import { UserRepository } from '../User/implementations/UserRepository';
 

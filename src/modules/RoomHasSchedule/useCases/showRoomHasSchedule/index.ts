@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { ShowRoomHasScheduleUseCase } from './ShowRoomHasScheduleUseCase';
 import { ShowRoomHasScheduleController} from './ShowRoomHasScheduleController';
 import { RoomHasScheduleRepository } from '../../implementations/RoomHasScheduleRepository';

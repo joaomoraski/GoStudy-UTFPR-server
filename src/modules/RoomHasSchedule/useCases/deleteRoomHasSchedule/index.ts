@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { DeleteRoomHasScheduleUseCase } from './DeleteRoomHasScheduleUseCase';
 import { DeleteRoomHasScheduleController} from './DeleteRoomHasScheduleController';
 import { RoomHasScheduleRepository } from '../../implementations/RoomHasScheduleRepository';

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Request, Response } from 'express';
 import { CreateInstituteUseCase } from './CreateInstituteUseCase';
 import { IInstituteDTO } from '../InstituteDTO'
@@ -24,7 +23,7 @@ class CreateInstituteController{
         const institute: Institute = await this.createInstituteUseCase.execute(instituteDTO);
 
         if (institute !== null) return response.status(201).json(institute);
-        return response.status(404).send("Erro ao criar instituto");
+        return response.status(404).json({message:"Erro ao criar instituto"});
     }
 }
 
