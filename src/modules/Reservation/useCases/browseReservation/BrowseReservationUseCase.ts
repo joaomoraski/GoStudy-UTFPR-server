@@ -17,5 +17,15 @@ class BrowseReservationUseCase {
         }
 
     }
+
+    async executeFilter(id_room: string, reservationDate: string): Promise<Reservation[]> {
+        try {
+            const reservations: Reservation[] = await this.reservationRepository.findByRoomAndDate(id_room, reservationDate);
+            return reservations;
+        } catch (error) {
+            console.log((error as Error).message);
+            return null;
+        }
+    }
 }
 export { BrowseReservationUseCase };
