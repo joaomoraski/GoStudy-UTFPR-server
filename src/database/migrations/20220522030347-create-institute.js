@@ -10,19 +10,24 @@ module.exports = {
                 type: Sequelize.INTEGER
             },
             name: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false,
             },
             city: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false,
             },
             telephone: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false,
             },
             openingTime: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false,
             },
             closingTime: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false,
             },
         });
     },
