@@ -13,17 +13,13 @@ class AuthController {
 
             const user:User = await this.userRepository.findByRA(ra);
             if(!user){
-                return res.status(401).send(
-                    {message: 'RA inválido'}
-                );
+                return res.status(401).send({message: 'RA inválido'});
             }
 
             const validPass = password === user.password;
 
             if (!validPass){
-                return res.status(401).send(
-                    {message: 'Senha inválida'}
-                );
+                return res.status(401).send({message: 'Senha inválida'});
             }
             const secret = process.env.SECRET;
             const token = sign({ id: user.id }, secret, {noTimestamp:true, expiresIn: '1d' });
@@ -34,7 +30,7 @@ class AuthController {
             })
         } catch (error) {
             console.log((error as Error).message);
-            return res.send("Internal Error");
+            return res.status(500).send({message: 'Ops! Parece que o nosso sistema está offline :('});
         }
         
     }

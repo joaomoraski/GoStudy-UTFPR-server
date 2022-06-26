@@ -20,6 +20,10 @@ class CreateInstituteController{
 
         const instituteDTO:IInstituteDTO = {name,city,telephone,openingTime,closingTime}
 
+        if (!name || !city || !telephone || !openingTime || !closingTime) {
+            return response.status(400).json({message:"Erro ao criar instituto, algum campo está faltando"});
+        }
+
         const institute: Institute = await this.createInstituteUseCase.execute(instituteDTO);
 
         if (institute !== null) return response.status(201).json(institute);
