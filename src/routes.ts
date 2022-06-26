@@ -46,7 +46,7 @@ router.post('/institute', verifyToken(), onlyAdmin(), (req, res) => {
     return createInstituteController.handle(req, res);
 })
 
-router.get('/institute', verifyToken(), onlyAdmin(), (req, res) => {
+router.get('/institute', (req, res) => {
     return showInstituteController.handle(req, res);
 })
 
