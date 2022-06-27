@@ -14,7 +14,13 @@ class BrowseReservationController{
     }
 
     async handleFilter(request: Request, response: Response) : Promise<Response> {
-        const reservations: Reservation[] = await this.browseReservationUseCase.executeFilter(request.params.id_room, request.params.reservationDate);
+        const reservations: Reservation[] = await this.browseReservationUseCase.executeByRoomAndDateFilter(request.params.id_room, request.params.reservationDate);
+        if (reservations !== null) return response.status(202).json(reservations);
+        return response.status(404).send("Nenhuma reserva encontrada");
+    }
+
+    async filterByDate(request: Request, response: Response): Promise<Response> {
+        const reservations: Reservation[] = await this.browseReservationUseCase.executeByDateFilter(request.params.reservationDate);
         if (reservations !== null) return response.status(202).json(reservations);
         return response.status(404).send("Nenhuma reserva encontrada");
     }
