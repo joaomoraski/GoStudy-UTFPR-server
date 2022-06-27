@@ -5,7 +5,6 @@ import { Op, Sequelize, QueryTypes, Model } from "sequelize";
 import { RoomDB } from "../../../database/models/Room";
 import { ScheduleDB } from "../../../database/models/Schedule";
 import { connection } from "../../../connectDB"
-import { mapFinderOptions } from "sequelize/types/utils";
 
 
 class ReservationRepository implements IReservationRepository {
@@ -47,16 +46,13 @@ class ReservationRepository implements IReservationRepository {
             return reservation.schedule.id;
         })
 
-        const res: any[] = schedules.map(schedule => {
-            for(let i = 0; i < indices.length; i++) {
-                // eslint-disable-next-line eqeqeq
-                if (schedule.id == indices[i]) schedule.isFree = 0;
-                else schedule.isFree = 1;
-            }
+        const schedulesWithReservations : any[] = schedules.map(schedule => {
+            if (indices.includes(schedule.id)) schedule.isFree = true;
+            else schedule.isFree = false;
+
             return schedule;
         })
-        
-        return res;
+        return schedulesWithReservations;
     }
 
     async listAllReservations(): Promise<Reservation[]> {
