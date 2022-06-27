@@ -7,35 +7,34 @@ module.exports = {
         return queryInterface.bulkInsert('schedule', [
             {
                 label: "T1",
-                initialTime: "13:00",
-                finalTime: "13:50"
+                initial_time: "13:00",
+                final_time: "13:50"
             },
             {
                 label: "T2",
-                initialTime: "13:50",
-                finalTime: "14:40"
+                initial_time: "13:50",
+                final_time: "14:40"
             },
             {
                 label: "T3",
-                initialTime: "14:40",
-                finalTime: "15:30"
+                initial_time: "14:40",
+                final_time: "15:30"
             },
             {
                 label: "M1",
-                initialTime: "07:30",
-                finalTime: "08:20"
+                initial_time: "07:30",
+                final_time: "08:20"
             },
             {
                 label: "M2",
-                initialTime: "08:20",
-                finalTime: "09:10"
+                initial_time: "08:20",
+                final_time: "09:10"
             },
             {
                 label: "M3",
-                initialTime: "09:10",
-                finalTime: "10:00"
-            },
-            
+                initial_time: "09:10",
+                final_time: "10:00"
+            }
         ]);
     },
 

@@ -17,18 +17,23 @@ class UpdateRoomUseCase {
         fk_id_institute,
         number
     }: IUpdateRoom): Promise<Room> {
-        const room: Room = await this.roomRepository.findById(id);
+        try {
+            const room: Room = await this.roomRepository.findById(id);
 
-        if (!room) {
-            throw new Error('Sala não existe');
+            if (!room) {
+                throw new Error('Sala não existe');
+            }
+
+            room.fk_id_institute = fk_id_institute ? fk_id_institute : room.fk_id_institute;
+            room.number = number ? number : room.number;
+
+            await this.roomRepository.update(room);
+
+            return room;
+        } catch (error) {
+            console.log((error as Error).message);
+            return null;
         }
-
-        room.fk_id_institute = fk_id_institute ? fk_id_institute : room.fk_id_institute;
-        room.number = number ? number : room.number;
-
-        await this.roomRepository.update(room);
-
-        return room;
     }
 }
 export { UpdateRoomUseCase };

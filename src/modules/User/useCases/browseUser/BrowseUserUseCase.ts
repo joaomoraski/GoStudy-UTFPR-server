@@ -9,9 +9,11 @@ class BrowseUserUseCase {
     async execute(query:string): Promise<User>{
         try {
             const user:User = await this.userRepository.findById(query);
+            if (!user) throw new Error('Usuário não existe');
             return user;
         } catch (error) {
-            throw new Error('Usuário não existe');
+            console.log((error as Error).message);
+            return null;
         }
 
     }

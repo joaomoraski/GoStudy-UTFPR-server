@@ -8,11 +8,17 @@ class CreateRoomHasScheduleUseCase {
     ) {}
     
     async execute( data: IRoomHasScheduleDTO): Promise<RoomHasSchedule>{
-        const roomHasSchedule: RoomHasSchedule = new RoomHasSchedule(data);
+        try {
+            const roomHasSchedule: RoomHasSchedule = new RoomHasSchedule(data);
 
-        await this.roomHasScheduleRepository.create(roomHasSchedule);
+            await this.roomHasScheduleRepository.create(roomHasSchedule);
+            if (!roomHasSchedule) throw new Error('Null Exception');
 
-        return roomHasSchedule;
+            return roomHasSchedule;
+        } catch (error) {
+            console.log((error as Error).message);
+            return null;
+        }
     }
 }
 export { CreateRoomHasScheduleUseCase };

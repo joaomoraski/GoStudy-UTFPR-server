@@ -9,8 +9,6 @@ class CreateRoomController {
     ) { }
 
     async handle(request: Request, response: Response): Promise<Response> {
-
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const {
             fk_id_institute,
             number
@@ -21,7 +19,8 @@ class CreateRoomController {
             number
         });
 
-        return response.status(201).json(room);
+        if (room !== null) return response.status(201).json(room);
+        return response.status(404).send('Erro ao criar sala');
     }
 }
 

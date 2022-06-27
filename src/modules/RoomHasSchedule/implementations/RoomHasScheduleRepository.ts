@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { RoomHasScheduleDB } from "../../../database/models/RoomHasSchedule";
 import { RoomHasSchedule } from "../../../entities/RoomHasSchedule";
 import { IRoomHasScheduleRepository } from "../IRoomHasScheduleRepository";

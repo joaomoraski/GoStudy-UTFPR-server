@@ -9,9 +9,11 @@ class BrowseRoomHasScheduleUseCase {
     async execute(query:string): Promise<RoomHasSchedule>{
         try {
             const roomHasSchedule:RoomHasSchedule = await this.roomHasScheduleRepository.findById(query);
+            if (!roomHasSchedule) throw new Error('Relação Sala/Horário não existe');
             return roomHasSchedule;
         } catch (error) {
-            throw new Error('Relação Sala/Horário não existe');
+            console.log((error as Error).message);
+            return null;
         }
 
     }

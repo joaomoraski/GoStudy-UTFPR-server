@@ -11,6 +11,7 @@ module.exports = {
             },
             fk_id_room: {
                 type: Sequelize.INTEGER,
+                allowNull: false,
                 onDelete: "CASCADE",
                 references: {
                     model: "room",
@@ -20,6 +21,7 @@ module.exports = {
             },
             fk_id_schedule: {
                 type: Sequelize.INTEGER,
+                allowNull: false,
                 onDelete: "CASCADE",
                 references: {
                     model: "schedule",

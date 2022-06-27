@@ -1,10 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { ReservationDB } from "../../../database/models/Reservation";
 import { Reservation } from "../../../entities/Reservation";
 import { IReservationRepository } from "../IReservationRepository";
-
+import { Op, Sequelize, QueryTypes, Model } from "sequelize";
+import { RoomDB } from "../../../database/models/Room";
+import { ScheduleDB } from "../../../database/models/Schedule";
+import { connection } from "../../../connectDB"
+import { UserDB } from "../../../database/models/User";
 
 class ReservationRepository implements IReservationRepository {
 
@@ -15,6 +16,44 @@ class ReservationRepository implements IReservationRepository {
         } catch(err) {
             throw new Error(err);
         }
+    }
+
+    async findAfterDate(data: string) : Promise<Reservation[]> {
+        try {
+            
+            const reservations : any[] = await ReservationDB.findAll({include: [{model: RoomDB},{model: ScheduleDB},{model:UserDB}]});
+            const res : any[] = reservations.filter(reservation => {
+                if ((reservation.reservationDate as string).split("-")[0] > data.split("-")[0] || (reservation.reservationDate as string).split("-")[1] > data.split("-")[1] || (reservation.reservationDate as string).split("-")[2] > data.split("-")[2]) return reservation;
+            });
+            return res;
+        } catch (error) {
+            console.log((error as Error).message);
+            return null;
+        }
+        
+    }
+
+    async findByRoomAndDate(room: string, reservationDate: string): Promise<Reservation[]> {
+        const schedules : any[] = await connection.query(`select s.* from schedule s where s.id in (select h.fk_id_schedule from room_has_schedule h where fk_id_room = ${room} );`, {type: QueryTypes.SELECT});
+        const reservations : any[] = await ReservationDB.findAll({
+            include: [{model: RoomDB}, {model: ScheduleDB}],
+            where: {
+                fk_id_room: room,
+                reservationDate: reservationDate
+            }
+        });
+
+        const indices : any[] = reservations.map(reservation => {
+            return reservation.schedule.id;
+        })
+
+        const schedulesWithReservations : any[] = schedules.map(schedule => {
+            if (indices.includes(schedule.id)) schedule.isFree = false;
+            else schedule.isFree = true;
+
+            return schedule;
+        })
+        return schedulesWithReservations;
     }
 
     async listAllReservations(): Promise<Reservation[]> {

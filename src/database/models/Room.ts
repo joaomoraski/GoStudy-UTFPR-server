@@ -1,5 +1,6 @@
 import { connection } from '../../connectDB';
 import { DataTypes } from 'sequelize';
+import { InstituteDB } from './Institute';
 
 const RoomDB = connection.define('room', {
     id: {
@@ -16,9 +17,11 @@ const RoomDB = connection.define('room', {
         type: DataTypes.STRING,
         allowNull: false
     },
-},{
+}, {
     tableName: "room",
     timestamps: false
 })
+
+RoomDB.belongsTo(InstituteDB, { foreignKey: 'fk_id_institute' });
 
 export { RoomDB };

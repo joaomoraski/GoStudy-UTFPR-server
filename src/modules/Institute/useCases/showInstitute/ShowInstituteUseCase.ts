@@ -11,6 +11,7 @@ class ShowInstituteUseCase {
             const institute:Institute[] = await this.instituteRepository.listAllInstitutes();
             return institute;
         } catch (error) {
+            console.log((error as Error).message);
             return null;
         }
     }

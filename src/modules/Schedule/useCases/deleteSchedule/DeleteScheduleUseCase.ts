@@ -7,15 +7,20 @@ class DeleteScheduleUseCase {
     ) {}
     
     async execute(id: string): Promise<Schedule>{
-        const schedule : Schedule = await this.scheduleRepository.findById(id);
+        try {
+            const schedule : Schedule = await this.scheduleRepository.findById(id);
 
-        if(!schedule) {
-            throw new Error('Schedule não existe');
+            if(!schedule) {
+                throw new Error('Schedule não existe');
+            }
+
+            await this.scheduleRepository.delete(schedule);
+
+            return schedule;
+        } catch (error) {
+            console.log((error as Error).message);
+            return null;
         }
-
-        await this.scheduleRepository.delete(schedule);
-
-        return schedule;
     }
 }
 export { DeleteScheduleUseCase };

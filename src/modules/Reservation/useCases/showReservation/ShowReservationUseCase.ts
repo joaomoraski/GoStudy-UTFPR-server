@@ -7,13 +7,15 @@ class ShowReservationUseCase {
     ) {}
     
     async execute(): Promise<Reservation[]>{
-        const reservation:Reservation[] = await this.ReservationRepository.listAllReservations();
-
-        if(!Reservation) {
-            throw new Error('Reserva não existe');
+        try {
+            const reservation:Reservation[] = await this.ReservationRepository.listAllReservations();
+                
+            return reservation;
+        } catch (error) {
+            console.log((error as Error).message);
+            return null;
         }
-
-        return reservation;
+        
     }
 }
 export { ShowReservationUseCase };

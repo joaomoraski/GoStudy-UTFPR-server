@@ -10,7 +10,6 @@ class CreateScheduleController {
 
     async handle(request: Request, response: Response): Promise<Response> {
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const {
             label,
             initial_time,
@@ -23,7 +22,8 @@ class CreateScheduleController {
             final_time
         });
 
-        return response.status(201).json(schedule);
+        if (schedule !== null) return response.status(201).json(schedule);
+        return response.status(404).send('Erro ao criar horário');
     }
 }
 

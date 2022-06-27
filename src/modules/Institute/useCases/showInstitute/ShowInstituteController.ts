@@ -10,8 +10,8 @@ class ShowInstituteController{
     async handle(request: Request, response: Response): Promise<Response> {
         const institute: Institute[] = await this.showInstituteUseCase.execute();
 
-        if (institute !== null) return response.status(201).json(institute);
-        return response.status(404).send("Erro ao buscar institutos");
+        if (institute !== null) return response.status(200).json(institute);
+        return response.status(404).json({message:"Erro ao buscar institutos"});
     }
 }
 

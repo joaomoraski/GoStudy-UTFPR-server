@@ -7,15 +7,21 @@ class DeleteRoomUseCase {
     ) {}
     
     async execute(id: string): Promise<Room>{
-        const room:Room = await this.roomRepository.findById(id);
+        try {
+            const room:Room = await this.roomRepository.findById(id);
 
-        if(!room) {
-            throw new Error('Sala não existe');
+            if(!room) {
+                throw new Error('Sala não existe');
+            }
+
+            await this.roomRepository.delete(room);
+
+            return room;
+        } catch (error) {
+            console.log((error as Error).message);
+            return null;
+            
         }
-
-        await this.roomRepository.delete(room);
-
-        return room;
     }
 }
 export { DeleteRoomUseCase };

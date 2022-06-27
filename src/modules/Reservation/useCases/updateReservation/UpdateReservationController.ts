@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Request, Response } from 'express';
 import { UpdateReservationUseCase } from './UpdateReservationUseCase';
 import { Reservation } from '../../../../entities/Reservation'
@@ -19,7 +18,8 @@ class UpdateReservationController {
             reservationDate
         });
 
-        return response.status(201).json(reservation);
+        if (reservation !== null) return response.status(200).json(reservation);
+        return response.status(404).send("Falha ao atualizar a reserva");
     }
 }
 

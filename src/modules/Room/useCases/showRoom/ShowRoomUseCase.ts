@@ -11,6 +11,7 @@ class ShowRoomUseCase {
             const room : Room[] = await this.roomRepository.listAllRooms();
             return room;
         } catch (error) {
+            console.log((error as Error).message);
             return null;
         }
     }

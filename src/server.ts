@@ -6,7 +6,6 @@ const port = process.env.BACKEND_APP_PORT;
 
 app.listen(port);
 
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
 (async function connectionDb(){
     try {
         const resultado = await connection.query("show tables");

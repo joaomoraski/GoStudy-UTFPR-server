@@ -1,9 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { UserDB } from "../../../database/models/User";
 import { User } from "../../../entities/User";
 import { IUserRepository } from "../IUserRepository";
@@ -30,8 +24,21 @@ class UserRepository implements IUserRepository {
     }
 
     async findByRA(ra:string): Promise<User> {
-        const users: any[] = await UserDB.findAll({where: { ra: ra}});
+        const users: any[] = await UserDB.findAll({
+            where: {
+                ra: ra
+            }
+        });
         return users[0];
+    }
+
+    async findByEmail(email: string): Promise<User> {
+        const user: any = await UserDB.findOne({
+            where: {
+                email: email
+            }
+        });
+        return user;
     }
 
     async update(user : User): Promise<User> {

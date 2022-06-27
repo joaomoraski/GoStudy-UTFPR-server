@@ -9,10 +9,8 @@ class BrowseRoomHasScheduleController{
 
     async handle(request: Request, response: Response): Promise<Response> {
         const roomHasSchedule: RoomHasSchedule = await this.browseRoomHasScheduleUseCase.execute(request.params.id);
-        if (roomHasSchedule) {
-            return response.status(201).json(roomHasSchedule);
-        }
-        return response.status(404).json({Erro : 'Relação Sala/Horário não encontrado'});
+        if (roomHasSchedule !== null) return response.status(200).json(roomHasSchedule);
+        return response.status(404).send('Relação Sala/Horário não encontrado');
     }
 }
 

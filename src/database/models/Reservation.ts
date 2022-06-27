@@ -1,5 +1,8 @@
 import { connection } from '../../connectDB';
 import { DataTypes } from 'sequelize';
+import { RoomDB } from './Room';
+import { ScheduleDB } from './Schedule';
+import { UserDB } from './User';
 
 // npx sequelize-cli-typescript model:generate --name Reservation --attributes fk_id_room:integer,fk_id_user:integer,fk_id_schedule:integer,date:string
 
@@ -30,5 +33,10 @@ const ReservationDB = connection.define('reservation', {
     tableName: "reservation",
     timestamps: false
 })
+
+ReservationDB.belongsTo(RoomDB, { foreignKey: 'fk_id_room' });
+ReservationDB.belongsTo(ScheduleDB, { foreignKey: 'fk_id_schedule' });
+ReservationDB.belongsTo(UserDB, { foreignKey: 'fk_id_user' });
+
 
 export { ReservationDB };
