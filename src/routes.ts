@@ -168,7 +168,7 @@ router.get('/user', verifyToken(), (req, res) => {
     return showUserController.handle(req, res); 
 })
 
-router.get('/user/:id', verifyToken(), verifyUser(), (req, res) => {
+router.get('/user/:id', verifyToken(), (req, res) => {
     return browseUserController.handle(req, res); 
 })
 
