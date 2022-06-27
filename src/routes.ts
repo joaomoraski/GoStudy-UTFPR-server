@@ -164,7 +164,7 @@ router.post('/user', (req, res) => {
     return createUserController.handle(req, res);
 })
 
-router.get('/user', verifyToken(), onlyAdmin(), (req, res) => {
+router.get('/user', verifyToken(), (req, res) => {
     return showUserController.handle(req, res); 
 })
 
