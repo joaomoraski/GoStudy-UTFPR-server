@@ -5,7 +5,7 @@ import { Op, Sequelize, QueryTypes, Model } from "sequelize";
 import { RoomDB } from "../../../database/models/Room";
 import { ScheduleDB } from "../../../database/models/Schedule";
 import { connection } from "../../../connectDB"
-
+import { UserDB } from "../../../database/models/User";
 
 class ReservationRepository implements IReservationRepository {
 
@@ -20,7 +20,8 @@ class ReservationRepository implements IReservationRepository {
 
     async findAfterDate(data: string) : Promise<Reservation[]> {
         try {
-            const reservations : any[] = await ReservationDB.findAll();
+            
+            const reservations : any[] = await ReservationDB.findAll({include: [{model: RoomDB},{model: ScheduleDB},{model:UserDB}]});
             const res : any[] = reservations.filter(reservation => {
                 if ((reservation.reservationDate as string).split("-")[0] > data.split("-")[0] || (reservation.reservationDate as string).split("-")[1] > data.split("-")[1] || (reservation.reservationDate as string).split("-")[2] > data.split("-")[2]) return reservation;
             });
@@ -47,8 +48,8 @@ class ReservationRepository implements IReservationRepository {
         })
 
         const schedulesWithReservations : any[] = schedules.map(schedule => {
-            if (indices.includes(schedule.id)) schedule.isFree = true;
-            else schedule.isFree = false;
+            if (indices.includes(schedule.id)) schedule.isFree = false;
+            else schedule.isFree = true;
 
             return schedule;
         })
