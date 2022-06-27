@@ -37,8 +37,8 @@ module.exports = {
                 name: "Caio",
                 ra: "18550000",
                 telephone: "44964345678",
-                email: "caioluiz@alunos.utfpr.edu.br",
-                password: 'aloaloaloalo',
+                email: "123",
+                password: '123',
                 isAdmin: true
             }
         ]);
