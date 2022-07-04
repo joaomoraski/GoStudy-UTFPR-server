@@ -1,3 +1,4 @@
+import { UserRepository } from '../../../User/implementations/UserRepository';
 import { Room } from '../../../../entities/Room';
 import { IRoomRepository } from '../../IRoomRepository';
 
@@ -6,9 +7,15 @@ class ShowRoomUseCase {
         private roomRepository: IRoomRepository
     ) {}
     
-    async execute(): Promise<Room[]>{
+    async execute(instituteId: string, userId: string): Promise<Room[]>{
         try {
-            const room : Room[] = await this.roomRepository.listAllRooms();
+            const userRepo = new UserRepository();
+            const user = await userRepo.findById(userId);
+            if (user.isAdmin) {
+                const room : Room[] = await this.roomRepository.listAllRooms();
+                return room;
+            }
+            const room : Room[] = await this.roomRepository.listByInstitute(instituteId);
             return room;
         } catch (error) {
             console.log((error as Error).message);

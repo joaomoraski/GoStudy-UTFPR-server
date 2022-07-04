@@ -17,7 +17,12 @@ class RoomRepository implements IRoomRepository {
     }
 
     async listAllRooms(): Promise<Room[]> {
-        const rooms: any[] = await RoomDB.findAll({include: [{ model: InstituteDB }]});
+        const rooms: any[] = await RoomDB.findAll({ include: [{ model: InstituteDB }]});
+        return rooms;
+    }
+
+    async listByInstitute(instituteId): Promise<Room[]> {
+        const rooms: any[] = await RoomDB.findAll({ include: [{ model: InstituteDB }], where: { fk_id_institute: instituteId } });
         return rooms;
     }
 

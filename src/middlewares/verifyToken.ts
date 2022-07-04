@@ -13,7 +13,9 @@ export function verifyToken() {
                 const secret = process.env.SECRET;
                 const payload = verify(authHeader, secret) as JwtPayload;
                 const id: string = payload.id;
+                const institute: string = payload.institute;
                 request.body.tokenId = id;
+                request.body.tokenInstitute = institute;
                 return next();
             } catch (err) {
                 return response.status(401).json({ message: 'Token inválido' });

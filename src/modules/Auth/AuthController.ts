@@ -24,7 +24,7 @@ class AuthController {
                 return res.status(401).send({message: 'Senha inválida'});
             }
             const secret = process.env.SECRET;
-            const token = sign({ id: user.id }, secret, {noTimestamp:true, expiresIn: '1d' });
+            const token = sign({ id: user.id, institute: user.fk_id_institute }, secret, {noTimestamp:true, expiresIn: '1d' });
 
             return res.json({
                 user,
